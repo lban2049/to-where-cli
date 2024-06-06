@@ -24,8 +24,6 @@ function npmSearchCommand(): Command {
       ) => {
         let pageUrl: string = null;
 
-        console.log(options);
-
         if (keyword && options.version) {
           pageUrl = `https://www.npmjs.com/package/${keyword}?activeTab=versions`;
         } else if (keyword && options.code) {
