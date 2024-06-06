@@ -1,3 +1,7 @@
+## 0.0.22 (六月 06, 2024)
+
+- feat: add run kit options to npm command
+
 # 2023/09/13(0.0.21)
 
 - feat: extend npm command (tw npm -c/-d/-v)
