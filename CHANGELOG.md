@@ -1,3 +1,7 @@
+## 0.0.23 (六月 06, 2024)
+
+- chore: remove useless codes
+
 ## 0.0.22 (六月 06, 2024)
 
 - feat: add run kit options to npm command
