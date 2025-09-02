@@ -3,7 +3,7 @@ projectName: to-where-cli
 projectDesc: A command-line tool that uses an alias mechanism to help you
   quickly open websites, GitHub repositories, and search pages, improving
   developer workflow.
-projectLogo: ""
+projectLogo: "https://avatars.githubusercontent.com/u/33124160?s=48&v=4"
 
 # =============================================================================
 # Documentation Configuration
@@ -61,8 +61,8 @@ targetAudience: ""
 locale: en
 translateLanguages:
   - zh
-docsDir: .aigne/doc-smith/docs  # Directory to save generated documentation
-sourcesPath:  # Source code paths to analyze
+docsDir: .aigne/doc-smith/docs # Directory to save generated documentation
+sourcesPath: # Source code paths to analyze
   - ./
 lastGitHead: a11e92a15a922b19f9618d23e6c18c59778864e2
 appUrl: https://docsmith.aigne.io
