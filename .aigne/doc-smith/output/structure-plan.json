@@ -1,0 +1,136 @@
+[
+  {
+    "description": "Provides a high-level overview of what to-where-cli is, its core purpose, and its key features, allowing users to quickly grasp its value and capabilities. It also outlines the overall structure of the documentation.",
+    "parentId": null,
+    "path": "/overview",
+    "sourceIds": [
+      "README.md",
+      "package.json",
+      "src/classes/create-program.ts"
+    ],
+    "title": "Overview"
+  },
+  {
+    "description": "Guides users through the initial setup, including installation steps and a minimal working example to quickly demonstrate the tool's basic functionality.",
+    "parentId": null,
+    "path": "/getting-started",
+    "sourceIds": [
+      "README.md",
+      "package.json",
+      "src/cli/add.ts",
+      "src/classes/simple-worker.ts",
+      "src/classes/open.ts",
+      "src/protocol/worker.protocol.ts",
+      "src/meta/point.meta.ts"
+    ],
+    "title": "Getting Started"
+  },
+  {
+    "description": "Explains the fundamental concepts behind to-where-cli, such as how aliases are managed, how configurations are stored, and the overall architecture that enables its operations.",
+    "parentId": null,
+    "path": "/core-concepts",
+    "sourceIds": [
+      "src/meta/point.meta.ts",
+      "src/meta/config.meta.ts",
+      "src/protocol/config.protocol.ts",
+      "src/classes/simple-config.ts",
+      "src/schema/point.ts",
+      "src/protocol/worker.protocol.ts",
+      "src/classes/simple-worker.ts"
+    ],
+    "title": "Core Concepts"
+  },
+  {
+    "description": "A comprehensive guide to all available commands and their functionalities, providing detailed usage instructions, options, and expected outcomes for each. This section is divided into sub-sections for better organization.",
+    "parentId": null,
+    "path": "/command-reference",
+    "sourceIds": [
+      "src/classes/create-program.ts"
+    ],
+    "title": "Command Reference"
+  },
+  {
+    "description": "Details on how to manage your custom aliases, including adding new ones, listing existing aliases, removing them, and clearing all stored aliases.",
+    "parentId": "/command-reference",
+    "path": "/command-reference/alias-management",
+    "sourceIds": [
+      "src/cli/add.ts",
+      "src/cli/list.ts",
+      "src/cli/rm.ts",
+      "src/cli/clean.ts",
+      "src/classes/simple-worker.ts",
+      "src/meta/actions-options.ts",
+      "src/utils/logger.ts",
+      "src/meta/point.meta.ts",
+      "src/protocol/worker.protocol.ts"
+    ],
+    "title": "Alias Management"
+  },
+  {
+    "description": "Instructions on using the dedicated 'git' command to quickly navigate to various pages of a GitHub repository, such as issues, pull requests, branches, commits, and project settings.",
+    "parentId": "/command-reference",
+    "path": "/command-reference/github-utilities",
+    "sourceIds": [
+      "src/cli/git/index.ts",
+      "src/cli/git/open.ts",
+      "src/utils/git.ts",
+      "src/classes/open.ts",
+      "src/meta/actions-options.ts"
+    ],
+    "title": "GitHub Utilities"
+  },
+  {
+    "description": "Explains how to use to-where-cli to perform quick searches on popular platforms like npm, Google, Baidu, Bing, and GitHub directly from your terminal.",
+    "parentId": "/command-reference",
+    "path": "/command-reference/search-integrations",
+    "sourceIds": [
+      "src/cli/npm/index.ts",
+      "src/cli/npm/search.ts",
+      "src/cli/google/index.ts",
+      "src/cli/google/search.ts",
+      "src/cli/baidu/index.ts",
+      "src/cli/baidu/search.ts",
+      "src/cli/bing/index.ts",
+      "src/cli/bing/search.ts",
+      "src/cli/github/index.ts",
+      "src/cli/github/search.ts",
+      "src/classes/open.ts"
+    ],
+    "title": "Search Integrations"
+  },
+  {
+    "description": "Provides guidance for developers interested in contributing to the project, covering topics such as setting up the development environment, building, testing, and understanding the release process.",
+    "parentId": null,
+    "path": "/development-guide",
+    "sourceIds": [
+      "Develop.md",
+      "package.json",
+      "jest.config.js",
+      "tsconfig.json",
+      "scripts/update-beta-package-version.js",
+      "scripts/libs/work-spaces.js"
+    ],
+    "title": "Development Guide"
+  },
+  {
+    "description": "Common issues and how to resolve them, including troubleshooting tips for alias not found errors, configuration file problems, and general logging for debugging.",
+    "parentId": null,
+    "path": "/troubleshooting",
+    "sourceIds": [
+      "src/utils/logger.ts",
+      "src/classes/simple-worker.ts",
+      "src/classes/simple-config.ts"
+    ],
+    "title": "Troubleshooting"
+  },
+  {
+    "description": "A chronological record of all changes, new features, bug fixes, and improvements introduced in each version of to-where-cli, helping users track updates and breaking changes.",
+    "parentId": null,
+    "path": "/release-notes",
+    "sourceIds": [
+      "CHANGELOG.md",
+      "package.json"
+    ],
+    "title": "Release Notes"
+  }
+]
