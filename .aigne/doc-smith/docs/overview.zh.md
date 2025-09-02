@@ -1,45 +1,57 @@
-# 概览
+# 概述
 
-`to-where-cli` 是一个命令行界面 (CLI) 工具，可帮助您使用简单的别名快速打开难以记忆或经常使用的 URL。它允许您直接从终端导航到网站、特定的 GitHub 仓库页面或流行平台上的搜索结果，从而简化您的工作流程。
+`to-where-cli` 是一款命令行工具，旨在通过别名机制简化你的工作流程，让你能轻松打开那些晦涩难记的 URL。它能帮助你直接从终端快速访问各种地址，无论是 GitHub 仓库，还是 npm、Google 等网站的搜索页面。
 
-目前，`to-where-cli` 旨在 [macOS](https://en.wikipedia.org/wiki/MacOS) 和 [Windows](https://en.wikipedia.org/wiki/Windows) 操作系统上运行。
+### 核心概念
 
-## 主要功能
+该工具的工作原理是将一个简单易记的别名映射到一个复杂的 URL。设置别名后，你便可以使用 `tw` 命令在默认浏览器中打开对应的地址。
 
-`to-where-cli` 提供一系列功能来增强您的命令行体验：
+```d2
+direction: right
 
-*   **别名管理**：为任何 URL 定义和管理自定义别名。
-*   **GitHub 仓库导航**：直接打开 GitHub 仓库的各个部分，例如问题、拉取请求或仓库主页。
-*   **集成搜索**：在 npm、Google、Bing、百度和 GitHub 等流行平台上执行快速搜索。
+用户: {
+  shape: person
+}
 
-## `to-where-cli` 的工作原理
+"命令行工具：to-where-cli": {
+  shape: rectangle
+}
 
-`to-where-cli` 的核心是基于 `commander.js` 库的一种直接机制，用于解析您的命令和别名。当您调用 `tw` 时，程序首先检查您是否提供了别名。如果别名存在，它会打开相应的 URL。否则，它会处理用于特定操作的专用命令，例如添加新别名、列现有别名或启动搜索。
+"URL：网站/搜索页面": {
+  shape: cloud
+}
 
-以下是 `to-where-cli` 架构的高级概述：
-
-```mermaid
-graph TD
-    A["用户调用 tw <别名> 或 tw <命令>"] --> B["to-where-cli 程序 (Commander.js)"]
-    B -- "解析输入" --> C{"是注册的别名吗？"}
-    C -- "是" --> D["打开与别名关联的 URL"]
-    C -- "否" --> E{"是特定命令吗？"}
-    E -- "是：例如，tw add, tw git, tw npm" --> F["执行相应的命令逻辑"]
-    E -- "否" --> G["显示帮助信息"]
-    F --> H["执行操作（添加/删除别名、打开 GitHub、搜索网页）"]
+用户 -> "命令行工具：to-where-cli": "执行命令 (例如 'tw home')"
+"命令行工具：to-where-cli" -> "URL：网站/搜索页面": "解析别名并在浏览器中打开 URL"
 ```
 
-## 文档结构
+### 主要功能
 
-本文档的组织旨在帮助您快速找到所需信息：
+`to-where-cli` 提供了多种功能，可简化你的命令行导航操作。
 
-*   **入门** (`/getting-started`)：了解如何安装 `to-where-cli` 并运行您的第一个命令。
-*   **核心概念** (`/core-concepts`)：了解 `to-where-cli` 背后的基本思想，包括别名管理。
-*   **命令参考** (`/command-reference`)：所有可用命令的详细指南，分为别名管理、GitHub 工具和搜索集成等特定部分。
-*   **开发指南** (`/development-guide`)：适用于对贡献或基于 `to-where-cli` 进行开发感兴趣的人员。
-*   **故障排除** (`/troubleshooting`)：查找常见问题的解决方案。
-*   **发布说明** (`/release-notes`)：跟踪各个版本中的更改和新功能。
+<x-cards data-columns="3">
+  <x-card data-title="别名管理" data-icon="lucide:link">
+    为任意 URL 创建、列出、更新和删除自定义别名，让你能轻松访问冗长复杂的地址。
+  </x-card>
+  <x-card data-title="Git 集成" data-icon="lucide:github">
+    直接打开 Git 仓库的特定页面，如 issues、pull requests 或项目主页。
+  </x-card>
+  <x-card data-title="快速搜索" data-icon="lucide:search">
+    无需预先打开浏览器，直接跳转到 npm、GitHub、Google、Bing、Baidu 等平台的搜索结果页面。
+  </x-card>
+</x-cards>
 
----
+### 支持平台
 
-要开始使用 `to-where-cli`，请前往 [入门](./getting-started.md) 部分。
+`to-where-cli` 目前官方支持以下操作系统：
+
+- macOS
+- Windows
+
+### 下一步
+
+准备好简化你的 URL 管理了吗？请根据安装指南开始使用。
+
+<x-card data-title="开始使用" data-icon="lucide:rocket" data-href="/getting-started/installation" data-cta="安装命令行工具">
+  面向新用户的分步指南，指导他们安装命令行工具并学习别名管理的基础命令。
+</x-card>

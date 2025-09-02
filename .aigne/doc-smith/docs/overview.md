@@ -1,45 +1,57 @@
 # Overview
 
-`to-where-cli` is a command-line interface (CLI) tool that helps you quickly open hard-to-remember or frequently used URLs using simple aliases. It streamlines your workflow by allowing you to navigate directly to websites, specific GitHub repository pages, or search results on popular platforms, all from your terminal.
+`to-where-cli` is a command-line tool designed to simplify your workflow by using an alias mechanism to open obscure or hard-to-remember URLs. It helps you quickly access various addresses, from GitHub repositories to the search pages of npm, Google, and other sites, directly from your terminal.
 
-Currently, `to-where-cli` is designed to run on [macOS](https://en.wikipedia.org/wiki/MacOS) and [Windows](https://en.wikipedia.org/wiki/Windows) operating systems.
+### Core Concept
 
-## Key Features
+The tool works by mapping a simple, memorable alias to a complex URL. Once an alias is set, you can use it with the `tw` command to open the corresponding address in your default browser.
 
-`to-where-cli` provides a set of features to enhance your command-line experience:
+```d2
+direction: right
 
-*   **Alias Management**: Define and manage custom aliases for any URL.
-*   **GitHub Repository Navigation**: Directly open various sections of a GitHub repository, such as issues, pull requests, or the repository's main page.
-*   **Integrated Search**: Perform quick searches on popular platforms like npm, Google, Bing, Baidu, and GitHub.
+User: {
+  shape: person
+}
 
-## How `to-where-cli` Works
+"CLI: to-where-cli": {
+  shape: rectangle
+}
 
-At its core, `to-where-cli` uses a straightforward mechanism based on the `commander.js` library to parse your commands and aliases. When you invoke `tw`, the program first checks if you've provided an alias. If an alias exists, it opens the corresponding URL. Otherwise, it processes dedicated commands for specific actions like adding new aliases, listing existing ones, or initiating searches.
+"URL: Website / Search Page": {
+  shape: cloud
+}
 
-Here's a high-level overview of the `to-where-cli` architecture:
-
-```mermaid
-graph TD
-    A["User Invokes tw <alias> or tw <command>"] --> B["to-where-cli Program (Commander.js)"]
-    B -- "Parses Input" --> C{"Is it a registered alias?"}
-    C -- "Yes" --> D["Open URL Associated with Alias"] 
-    C -- "No" --> E{"Is it a specific command?"}
-    E -- "Yes: e.g., tw add, tw git, tw npm" --> F["Execute Corresponding Command Logic"]
-    E -- "No" --> G["Show Help Information"]
-    F --> H["Perform Action (Add/Remove Alias, Open GitHub, Search Web)"]
+User -> "CLI: to-where-cli": "Executes command (e.g., 'tw home')"
+"CLI: to-where-cli" -> "URL: Website / Search Page": "Resolves alias and opens URL in browser"
 ```
 
-## Documentation Structure
+### Key Features
 
-This documentation is organized to help you quickly find the information you need:
+`to-where-cli` provides several features to streamline your command-line navigation.
 
-*   **Getting Started** (`/getting-started`): Learn how to install `to-where-cli` and run your first commands.
-*   **Core Concepts** (`/core-concepts`): Understand the fundamental ideas behind `to-where-cli`, including alias management.
-*   **Command Reference** (`/command-reference`): A detailed guide to all available commands, broken down into specific sections for alias management, GitHub utilities, and search integrations.
-*   **Development Guide** (`/development-guide`): For those interested in contributing or building upon `to-where-cli`.
-*   **Troubleshooting** (`/troubleshooting`): Find solutions to common issues.
-*   **Release Notes** (`/release-notes`): Track changes and new features across versions.
+<x-cards data-columns="3">
+  <x-card data-title="Alias Management" data-icon="lucide:link">
+    Create, list, update, and remove custom aliases for any URL, making long and complex addresses easily accessible.
+  </x-card>
+  <x-card data-title="Git Integration" data-icon="lucide:github">
+    Directly open specific pages of a Git repository, such as issues, pull requests, or the project homepage.
+  </x-card>
+  <x-card data-title="Quick Search" data-icon="lucide:search">
+    Jump straight to search results on platforms like npm, GitHub, Google, Bing, and Baidu without opening a browser first.
+  </x-card>
+</x-cards>
 
----
+### Supported Platforms
 
-To begin using `to-where-cli`, proceed to the [Getting Started](./getting-started.md) section.
+Currently, `to-where-cli` officially supports the following operating systems:
+
+- macOS
+- Windows
+
+### Next Steps
+
+Ready to simplify your URL management? Follow the installation guide to get started.
+
+<x-card data-title="Getting Started" data-icon="lucide:rocket" data-href="/getting-started/installation" data-cta="Install the CLI">
+  A step-by-step guide for new users to install the CLI and learn the basic commands for alias management.
+</x-card>

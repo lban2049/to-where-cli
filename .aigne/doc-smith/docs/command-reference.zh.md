@@ -1,79 +1,47 @@
 # 命令参考
 
-本节全面介绍了 `to-where-cli` 中的所有可用命令。它概述了核心功能并对子命令进行了分类，引导您前往详细部分以获取每个命令的深入使用说明、选项和预期结果。
+`to-where-cli` 工具（别名为 `tw`）提供了一套命令，可用于直接在终端中管理 URL 别名和执行快速搜索。使用该 CLI 的通用结构是 `tw [subcommand] [arguments]`。
 
-如果您是 `to-where-cli` 的新用户，建议您从[入门指南](./getting-started.md)开始，以设置您的环境。
+本节是所有可用命令的综合指南。下面是命令结构的概览。
 
-## 命令结构概述
+```d2
+direction: down
 
-下图展示了主命令及其各种子命令，按其主要功能进行分类：
+"tw": {
+  shape: cloud
+  "核心别名命令": {
+    "add": "添加或更新别名"
+    "rm": "移除别名"
+    "ls": "列出所有别名"
+    "clean": "移除无效别名"
+  }
 
-```mermaid
-graph TD
-    A["to-where-cli tw"] --> B{"核心功能"};
-    A --> C{"子命令"};
+  "Git 集成": {
+    "git": "打开仓库页面（issues、PR 等）"
+  }
 
-    B --> B1["打开别名"];
-
-    C --> C1["别名管理"];
-    C --> C2["GitHub 工具"];
-    C --> C3["搜索集成"];
-
-    C1 --> C1a["tw add"];
-    C1 --> C1b["tw rm"];
-    C1 --> C1c["tw list"];
-    C1 --> C1d["tw clean"];
-
-    C2 --> C2a["tw git"];
-
-    C3 --> C3a["tw npm"];
-    C3 --> C3b["tw google"];
-    C3 --> C3c["tw baidu"];
-    C3 --> C3d["tw bing"];
-    C3 --> C3e["tw github"];
+  "网页搜索": {
+    "npm": "在 npmjs.com 上搜索"
+    "github": "在 GitHub 上搜索"
+    "google": "在 Google 上搜索"
+    "bing": "在 Bing 上搜索"
+    "baidu": "在百度上搜索"
+  }
+}
 ```
 
-## 可用命令
+要获取每个命令的详细信息（包括所有可用选项和使用示例），请浏览下方的相关章节。
 
-`to-where-cli` 提供了一组旨在简化您的工作流程的命令：
+<x-cards data-columns="3">
+  <x-card data-title="核心命令" data-icon="lucide:box" data-href="/command-reference/core">
+    管理您的 URL 别名。包括 `add`、`rm`、`ls` 和 `clean` 等命令，用于创建、删除和列出您的快捷方式。
+  </x-card>
+  <x-card data-title="Git 命令" data-icon="lucide:git-branch" data-href="/command-reference/git">
+    使用 `git` 子命令快速访问 Git 仓库的各个页面，例如 issues、pull requests 和 actions。
+  </x-card>
+  <x-card data-title="搜索命令" data-icon="lucide:search" data-href="/command-reference/search">
+    直接在终端中对热门网站进行搜索。支持的命令包括 `npm`、`github`、`google`、`bing` 和 `baidu`。
+  </x-card>
+</x-cards>
 
-| 命令           | 描述                                                       | 类别              |
-| :---------------- | :----------------------------------------------------------------- | :-------------------- |
-| `tw [别名]`      | 在浏览器中打开与指定别名关联的地址。 | 核心功能    |
-| `tw add`          | 添加新别名，将其链接到 URL 或路径。                    | 别名管理      |
-| `tw rm`           | 移除现有别名。                                         | 别名管理      |
-| `tw list`         | 显示所有当前存储的别名。                             | 别名管理      |
-| `tw clean`        | 从配置中清除所有存储的别名。                 | 别名管理      |
-| `tw git`          | 导航到 GitHub 仓库的各个部分。              | GitHub 工具      |
-| `tw npm`          | 在 npmjs.com 上搜索包。                       | 搜索集成   |
-| `tw google`       | 使用 Google 执行搜索。                                    | 搜索集成   |
-| `tw baidu`        | 使用百度执行搜索。                                     | 搜索集成   |
-| `tw bing`         | 使用 Bing 执行搜索。                                    | 搜索集成   |
-| `tw github`       | 在 GitHub.com 上执行搜索。                                   | 搜索集成   |
-
-
-## 详细命令类别
-
-有关每个命令及其具体用法、选项和示例的详细信息，请参阅专门的子部分：
-
-### 别名管理
-
-本节涵盖了创建、列出、移除和清除自定义别名的所有内容。它提供了管理 `to-where-cli` 快捷方式的分步说明和示例。
-
-了解更多关于[别名管理](./command-reference-alias-management.md)。
-
-### GitHub 工具
-
-本节详细介绍了 `tw git` 命令，该命令允许您直接从终端快速导航到 GitHub 仓库的不同部分，例如问题、拉取请求、分支和项目设置。
-
-了解更多关于[GitHub 工具](./command-reference-github-utilities.md)。
-
-### 搜索集成
-
-本节解释了如何利用 `to-where-cli` 直接从命令行在各种流行平台（包括 npm、Google、百度、Bing 和 GitHub）上执行快速搜索。
-
-了解更多关于[搜索集成](./command-reference-search-integrations.md)。
-
----
-
-本命令参考提供了 `to-where-cli` 中所有可用功能的结构化概述。探索链接的子部分，获取每个命令类别的深入指导，以最大限度地提高您的工作效率。如果您有兴趣为 `to-where-cli` 贡献代码，请参阅[开发指南](./development-guide.md)。
+每个子命令都有其特定的选项和参数。点击上方的卡片即可导航至每个命令组的详细文档。
