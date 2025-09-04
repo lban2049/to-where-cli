@@ -1,47 +1,113 @@
 # Command Reference
 
-The `to-where-cli` tool, aliased as `tw`, provides a suite of commands to manage URL aliases and perform quick searches directly from your terminal. The general structure for using the CLI is `tw [subcommand] [arguments]`.
+The `to-where-cli` provides a suite of commands to manage URL aliases and quickly access web resources directly from your terminal. This section serves as a comprehensive reference for all available commands, their subcommands, and options.
 
-This section serves as a comprehensive guide to all available commands. Below is a high-level overview of the command structure.
+## Command Structure Overview
+
+The CLI is organized around a main `tw` command followed by subcommands for specific actions. Here is a visual breakdown of the available commands:
 
 ```d2
 direction: down
 
 "tw": {
-  shape: cloud
-  "Core Alias Commands": {
-    "add": "Add or update an alias"
-    "rm": "Remove an alias"
-    "ls": "List all aliases"
-    "clean": "Remove invalid aliases"
+  shape: hexagon
+  label: "tw (CLI Entry)"
+}
+
+"Commands": {
+  shape: package
+  grid-columns: 3
+
+  "Core Commands": {
+    shape: package
+    "add"
+    "rm"
+    "ls"
+    "clean"
   }
 
-  "Git Integration": {
-    "git": "Open repository pages (issues, PRs, etc.)"
+  "Git Command": {
+    shape: package
+    "git"
   }
 
-  "Web Search": {
-    "npm": "Search on npmjs.com"
-    "github": "Search on GitHub"
-    "google": "Search on Google"
-    "bing": "Search on Bing"
-    "baidu": "Search on Baidu"
+  "Search Commands": {
+    shape: package
+    "npm"
+    "github"
+    "google"
+    "bing"
+    "baidu"
   }
 }
+
+"Default Action": {
+  label: "tw [alias]"
+  shape: rectangle
+}
+
+"Global Options": {
+    shape: package
+    "-h, --help"
+    "-V, --version"
+}
+
+"tw" -> "Default Action": "Default"
+"tw" -> "Commands": "Subcommands"
+"tw" -> "Global Options": "Options"
 ```
 
-For detailed information on each command, including all available options and usage examples, explore the relevant sections below.
+## Main Command (`tw`)
+
+The most basic usage of `to-where-cli` is to open a stored alias. If you run `tw` followed by a string, it will treat that string as an alias and attempt to open its corresponding URL.
+
+```shell
+# Opens the URL associated with the 'home' alias
+tw home
+```
+
+If you run `tw` with no arguments, it will display the main help menu.
+
+```shell
+# Displays the main help menu
+tw
+```
+
+## Command Categories
+
+Commands are grouped into logical categories. Select a category below to view detailed documentation for each command.
 
 <x-cards data-columns="3">
-  <x-card data-title="Core Commands" data-icon="lucide:box" data-href="/command-reference/core">
-    Manage your URL aliases. Includes commands like `add`, `rm`, `ls`, and `clean` for creating, deleting, and listing your shortcuts.
+  <x-card data-title="Core Commands" data-icon="lucide:archive" data-href="/command-reference/core">
+    Manage your aliases with fundamental commands like add, remove, list, and clean.
   </x-card>
   <x-card data-title="Git Command" data-icon="lucide:git-branch" data-href="/command-reference/git">
-    Quickly access various pages of a Git repository, such as issues, pull requests, and actions, using the `git` subcommand.
+    Quickly navigate to various pages of a Git repository, such as issues, pull requests, and actions.
   </x-card>
   <x-card data-title="Search Commands" data-icon="lucide:search" data-href="/command-reference/search">
-    Perform searches on popular websites directly from your terminal. Supported commands include `npm`, `github`, `google`, `bing`, and `baidu`.
+    Perform searches directly from your terminal on platforms like NPM, GitHub, Google, and more.
   </x-card>
 </x-cards>
 
-Each subcommand has its own specific options and arguments. Click on the cards above to navigate to the detailed documentation for each command group.
+## Global Options
+
+These options can be used with the main `tw` command and most subcommands.
+
+| Option              | Description                  |
+| ------------------- | ---------------------------- |
+| `-h`, `--help`      | Display help for a command.  |
+| `-V`, `--version`   | Output the version number.   |
+
+**Example:**
+
+```shell
+# Get help for the 'add' subcommand
+tw add --help
+
+# Check your installed version
+tw --version
+```
+
+---
+
+Now that you have an overview of the command structure, dive into the specifics by exploring the [Core Commands](./command-reference-core.md) documentation.

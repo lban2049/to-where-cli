@@ -1,83 +1,87 @@
 # Changelog
 
-This document provides a detailed log of all changes, new features, and bug fixes for each version of `to-where-cli`.
+This page documents the history of changes, new features, and bug fixes for each version of `to-where-cli`.
 
-## 0.0.23
-*Released on June 06, 2024*
+## [0.0.23] - 2024-06-06
 
-- **Chore:** Removed useless codes.
+### Chore
+- Removed unused code.
 
-## 0.0.22
-*Released on June 06, 2024*
+## [0.0.22] - 2024-06-06
 
-- **Feature:** Added run kit options to the `npm` command.
+### Features
+- Added RunKit options to the `npm` command.
 
-## 0.0.21
-*Released on September 13, 2023*
+## [0.0.21] - 2023-09-13
 
-- **Feature:** Extended the `npm` command to support `-c`, `-d`, and `-v` options.
+### Features
+- Extended the `npm` command with new options (`tw npm -c/-d/-v`).
 
-## 0.0.20
-*Released on July 11, 2023*
+## [0.0.20] - 2023-07-11
 
-- **Feature:** Added support for opening a specified branch.
-- **Feature:** Added support for opening the first commit.
+### Features
+- Added support for opening a specified branch.
+- Added support for opening the first commit of a repository.
 
-## 0.0.19
-*Released on May 21, 2023*
+## [0.0.19] - 2023-05-21
 
-- **Feature:** Added support for opening a specified branch.
-- **Feature:** Added support for opening the first commit.
-- **Docs:** Updated `README.md` and GitBook site documentation.
+### Features
+- Added support for opening a specified branch.
+- Added support for opening the first commit.
 
-## 0.0.18
-*Released on May 14, 2023*
+### Documentation
+- Updated `README.md` and the GitBook site documentation.
 
-- **Feature:** Improved the test suite.
+## [0.0.18] - 2023-05-14
 
-## 0.0.17
-*Released on February 26, 2023*
+### Features
+- Improved test coverage and implementation.
 
-- **Feature:** Added support for opening the star screen of a project.
-- **Feature:** Added support for removing multiple aliases using `tw rm`.
+## [0.0.17] - 2023-02-26
 
-## 0.0.16
-*Released on February 10, 2023*
+### Features
+- Added support for opening the star page of a project.
+- Added support for removing multiple aliases using `tw rm`.
 
-- **Feature:** Added support for searching on npm, Baidu, Google, Bing, and GitHub pages.
-- **Feature:** The `tw list` subcommand now supports the `tw ls` shorthand.
+## [0.0.16] - 2023-02-10
 
-## 0.0.15
-*Released on February 06, 2023*
+### Features
+- Added support for searching on npm, Baidu, Google, Bing, and GitHub pages.
+- The `tw list` subcommand now accepts `tw ls` as a shorthand.
 
-- **Feature:** The `git` subcommand now works with git SSH URLs.
+## [0.0.15] - 2023-02-06
 
-## 0.0.14
-*Released on February 03, 2023*
+### Features
+- The `git` subcommand now works with Git SSH URLs.
 
-- **Feature:** Added support for using `tw git open --pull` to create a pull request.
+## [0.0.14] - 2023-02-03
 
-## 0.0.13
-*Released on January 28, 2023*
+### Features
+- Added support for creating a pull request using `tw git open --pull`.
 
-- **Feature:** Added support for releasing beta versions of to-where-cli.
-- **Fix:** Resolved a Windows installation error related to `npx only-allow pnpm`.
-- **Feature:** Implemented a version check before release.
+## [0.0.13] - 2023-01-28
 
-## 0.0.12
-*Released on January 27, 2023*
+### Features
+- Added support for releasing beta versions of `to-where-cli`.
+- Implemented a version check before release.
 
-- **Fix:** Corrected an error in the `README.md` file.
+### Bug Fixes
+- Fixed a Windows installation error caused by the `npx only-allow pnpm` preinstall script.
 
-## 0.0.11
-*Released on January 27, 2023*
+## [0.0.12] - 2023-01-27
 
-- **Feature:** Added support for opening a file with a specified path via `tw git open --file <path>`.
-- **Feature:** Added support for opening a commit with a specified hash via `tw git open -c <hash>`.
+### Bug Fixes
+- Corrected an error in the `README.md` file.
 
-## 0.0.10
-*Released on January 27, 2023*
+## [0.0.11] - 2023-01-27
 
-- **Feature:** Added support for the Windows operating system.
-- **Feature:** Added support for opening git branch pages, issue list pages, PR list pages, and more.
-- **Feature:** Added support for statistics on visits.
+### Features
+- Added support for opening a file at a specified path via `tw git open --file <path>`.
+- Added support for opening a specific commit via `tw git open -c <hash>`.
+
+## [0.0.10] - 2023-01-27
+
+### Features
+- Added support for the Windows operating system.
+- Added support for opening various Git pages, including branches, issues, and pull requests.
+- Implemented visit statistics tracking.

@@ -1,62 +1,69 @@
 # 核心命令
 
-核心命令是 `to-where-cli` 的基础，提供了管理目录别名所需的所有工具。你可以使用这些命令来添加、删除、列出和清除快捷方式。
+核心命令是 `to-where-cli` 的基础，为管理目录别名提供了必要的工具。本节为添加、删除、列出和清空别名提供了详细参考。
 
 ---
 
 ## add
 
-`add` 命令为指定的目录路径创建一个新别名。如果未提供路径，则默认为当前工作目录。
+`add` 命令用于为指定的目录路径创建一个新别名。如果未提供别名或地址，则默认使用当前工作目录。
 
 ### 用法
 
 ```bash
-tw add [alias] [address]
+tw add [alias] [address] [options]
 ```
 
 ### 参数和选项
 
-| 参数 | 描述 | 是否必需 |
-|---|---|---|
-| `alias` | 你想创建的别名的名称。如果省略，则使用当前目录的名称。 | 否 |
-| `address` | 你想与别名关联的目录路径。如果省略，则使用当前工作目录。 | 否 |
-| `-f`, `--force` | 如果存在同名别名，则覆盖现有别名。 | 否 |
+| Parameter | Description                                                                                    | Required |
+| :-------- | :--------------------------------------------------------------------------------------------- | :------- |
+| `[alias]`   | 为地址指定的名称。如果省略，则使用当前目录的名称。           | 否       |
+| `[address]` | 要创建别名的目录路径。如果省略，则使用当前工作目录 (`cwd`)。     | 否       |
+| `-f, --force` | 覆盖同名的现有别名。若不使用此标志，当别名已存在时，命令将会执行失败。 | 否       |
 
 ### 示例
 
-**1. 为当前目录创建别名**
+**1. 为指定路径创建别名：**
 
-如果你位于 `/Users/dev/my-project` 目录，此命令将创建一个名为 `my-project` 的别名指向该目录。
+该命令会创建一个名为 `docs` 的别名，指向 `~/documents/work`。
 
 ```bash
+tw add docs ~/documents/work
+```
+
+**2. 为当前目录创建别名：**
+
+如果你已在目标目录中，可以省略 `address` 参数。
+
+```bash
+cd ~/projects/my-app
+tw add my-app
+```
+
+**3. 使用默认值创建别名：**
+
+如果 `alias` 和 `address` 均被省略，命令将使用当前目录的名称作为别名，并使用其路径作为地址。
+
+```bash
+cd ~/projects/website
 tw add
+# 该操作会创建一个名为 'website' 的别名，指向当前路径。
 ```
 
-**2. 为特定目录创建命名别名**
+**4. 覆盖现有别名：**
+
+使用 `-f` 或 `--force` 标志更新现有别名，使其指向新地址。
 
 ```bash
-tw add my-app /Users/dev/my-application
-```
-
-**3. 覆盖现有别名**
-
-如果别名 `my-app` 已存在，你必须使用 `--force` 标志来更新它。
-
-```bash
-tw add my-app /Users/dev/new-path --force
-```
-
-如果不使用 `--force` 标志，你将收到一条错误信息：
-
-```
-Alias my-app already exists, you can use '-f' or '--force' to overwrite it
+tw add docs ~/documents/personal -f
 ```
 
 ---
 
 ## rm
 
-`rm` 命令用于删除一个或多个别名。
+`rm` 命令用于从配置中删除一个或多个别名。
 
 ### 用法
 
@@ -66,141 +73,113 @@ tw rm [alias]
 
 ### 参数
 
-| 参数 | 描述 | 是否必需 |
-|---|---|---|
-| `alias` | 要删除的别名的名称。 | 否 |
-
-### 行为
-
-- **带别名：** 如果你提供一个别名，该命令将删除指定的别名。
-- **不带别名：** 如果你在不带别名的情况下运行该命令，它将启动一个交互式提示，允许你选择多个别名进行删除。
+| Argument | Description                                                                                                                   | Required |
+| :------- | :---------------------------------------------------------------------------------------------------------------------------- | :------- |
+| `[alias]`  | 要删除的别名。如果省略，将出现一个交互式提示，允许你选择多个别名进行删除。 | 否       |
 
 ### 示例
 
-**1. 删除特定别名**
+**1. 删除特定别名：**
 
 ```bash
-tw rm my-app
+tw rm docs
 ```
 
-预期输出：
+**2. 以交互方式删除多个别名：**
 
-```
-Alias my-app has been removed
-my-app => /Users/dev/new-path => 0
-```
-
-**2. 使用交互模式删除别名**
-
-不带任何参数运行该命令以进入选择提示。
+在不带别名参数的情况下运行该命令，将启动一个交互式多选菜单。使用方向键导航，使用空格键选择，按回车键确认。
 
 ```bash
 tw rm
 ```
 
-这将显示一个列表，你可以使用箭头键和空格键选择要删除的别名：
+执行后，你将看到类似如下的提示：
 
 ```
-? Select the alias to be deleted233
-  Instructions: 
-    ↑/↓: Highlight option
-    ←/→/[space]: Toggle selection
-    a: Toggle all
-    [enter]: Done
-❯ ◯ project-a => /path/to/project-a => 10
-  ◯ project-b => /path/to/project-b => 5
-  ◯ project-c => /path/to/project-c => 2
+? Select the alias to be deleted233 (Press <space> to select, <a> to toggle all, <i> to invert selection)
+❯ ◯ my-app => /Users/user/projects/my-app => 15
+  ◯ website => /Users/user/projects/website => 10
+  ◯ docs => /Users/user/documents/personal => 5
 ```
 
 ---
 
-## ls
+## ls (或 list)
 
-`ls` 命令（别名为 `list`）显示你已保存的别名、它们对应的路径以及它们的访问次数。
+`ls` 命令（别名为 `list`）会显示已保存的别名、其对应的路径以及使用频率计数。列表按访问次数降序排列。
 
 ### 用法
 
 ```bash
 tw ls [alias]
-tw list [alias]
 ```
 
 ### 参数
 
-| 参数 | 描述 | 是否必需 |
-|---|---|---|
-| `alias` | 要显示的特定别名的名称。如果省略，将列出所有别名。 | 否 |
+| Argument | Description                                                        | Required |
+| :------- | :----------------------------------------------------------------- | :------- |
+| `[alias]`  | 要显示的特定别名的名称。如果省略，则列出所有别名。 | 否       |
 
 ### 示例
 
-**1. 列出所有已保存的别名**
-
-列表按访问次数降序排列。
+**1. 列出所有别名：**
 
 ```bash
 tw ls
 ```
 
-预期输出：
-
+输出示例：
 ```
-project-a => /path/to/project-a => 10
-project-b => /path/to/project-b => 5
-project-c => /path/to/project-c => 2
+my-app => /Users/user/projects/my-app => 15
+website => /Users/user/projects/website => 10
+docs => /Users/user/documents/personal => 5
 ```
 
-**2. 显示特定别名**
+**2. 显示特定别名的详细信息：**
 
 ```bash
-tw ls project-b
+tw ls my-app
 ```
 
-预期输出：
-
+输出示例：
 ```
-project-b => /path/to/project-b => 5
+my-app => /Users/user/projects/my-app => 15
 ```
 
 ---
 
 ## clean
 
-`clean` 命令删除所有已保存的别名。此操作不可逆，需要确认标志。
+`clean` 命令会永久删除所有已保存的别名。这是一个破坏性操作，需要确认标志以防止意外的数据丢失。
 
 ### 用法
 
 ```bash
-tw clean
+tw clean [options]
 ```
 
 ### 选项
 
-| 参数 | 描述 | 是否必需 |
-|---|---|---|
-| `-f`, `--force` | 确认删除所有别名的操作。这是一个必需的安全措施。 | 是 |
+| Option        | Description                                       | Required |
+| :------------ | :------------------------------------------------ | :------- |
+| `-f, --force` | 确认删除所有别名的操作。此标志是执行该命令所必需的。 | 是      |
 
 ### 示例
 
-**1. 尝试在不带强制标志的情况下进行清理**
+**1. 在未确认的情况下尝试清空：**
 
-在不带 `--force` 的情况下运行 `clean` 将导致错误，以防止意外数据丢失。
+在没有 `--force` 标志的情况下运行 `tw clean` 将会返回一条错误信息，以确保你了解此操作的后果。
 
 ```bash
 tw clean
+# 输出：为确保你知晓正在进行的操作，必须使用 '-f' 或 '--force' 才能清空
 ```
 
-预期输出：
+**2. 清空所有别名：**
 
-```
-To make sure you know what you're doing, you must use '-f' or '--force' to empty
-```
-
-**2. 清除所有别名**
-
-使用 `--force` 标志继续删除操作。
+要继续删除所有别名，请使用 `--force` 标志。
 
 ```bash
 tw clean --force
+# 所有别名都将被删除。
 ```
-
-执行后，所有别名将被永久删除。

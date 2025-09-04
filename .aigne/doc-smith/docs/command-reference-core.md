@@ -1,62 +1,69 @@
 # Core Commands
 
-The core commands are the foundation of `to-where-cli`, providing all the necessary tools to manage your directory aliases. You can use them to add, remove, list, and clear your shortcuts.
+The core commands are the foundation of `to-where-cli`, providing the essential tools for managing your directory aliases. This section provides a detailed reference for adding, removing, listing, and clearing aliases.
 
 ---
 
 ## add
 
-The `add` command creates a new alias for a specified directory path. If no path is provided, it defaults to the current working directory.
+The `add` command creates a new alias for a specified directory path. If an alias or address is not provided, it will use the current working directory as a default.
 
 ### Usage
 
 ```bash
-tw add [alias] [address]
+tw add [alias] [address] [options]
 ```
 
 ### Arguments & Options
 
-| Parameter | Description | Required |
-|---|---|---|
-| `alias` | The name of the alias you want to create. If omitted, the name of the current directory is used. | No |
-| `address` | The directory path you want to associate with the alias. If omitted, the current working directory is used. | No |
-| `-f`, `--force` | Overwrites an existing alias if it has the same name. | No |
+| Parameter | Description                                                                                    | Required |
+| :-------- | :--------------------------------------------------------------------------------------------- | :------- |
+| `[alias]`   | The name to assign to the address. If omitted, the current directory's name is used.           | No       |
+| `[address]` | The directory path to be aliased. If omitted, the current working directory (`cwd`) is used.     | No       |
+| `-f, --force` | Overwrites an existing alias with the same name. Without this flag, the command will fail if the alias exists. | No       |
 
 ### Examples
 
-**1. Create an alias for the current directory**
+**1. Create an alias for a specific path:**
 
-If you are in `/Users/dev/my-project`, this command creates an alias named `my-project` pointing to it.
+This command creates an alias named `docs` that points to `~/documents/work`.
 
 ```bash
+tw add docs ~/documents/work
+```
+
+**2. Create an alias for the current directory:**
+
+If you are already in the target directory, you can omit the `address` argument.
+
+```bash
+cd ~/projects/my-app
+tw add my-app
+```
+
+**3. Create an alias using defaults:**
+
+If both `alias` and `address` are omitted, the command will use the current directory's name as the alias and its path as the address.
+
+```bash
+cd ~/projects/website
 tw add
+# This creates an alias 'website' pointing to the current path.
 ```
 
-**2. Create a named alias for a specific directory**
+**4. Overwrite an existing alias:**
+
+Use the `-f` or `--force` flag to update an existing alias to point to a new address.
 
 ```bash
-tw add my-app /Users/dev/my-application
-```
-
-**3. Overwrite an existing alias**
-
-If the alias `my-app` already exists, you must use the `--force` flag to update it.
-
-```bash
-tw add my-app /Users/dev/new-path --force
-```
-
-Without the `--force` flag, you will receive an error:
-
-```
-Alias my-app already exists, you can use '-f' or '--force' to overwrite it
+tw add docs ~/documents/personal -f
 ```
 
 ---
 
 ## rm
 
-The `rm` command removes one or more aliases.
+The `rm` command removes one or more aliases from your configuration.
 
 ### Usage
 
@@ -66,141 +73,113 @@ tw rm [alias]
 
 ### Arguments
 
-| Parameter | Description | Required |
-|---|---|---|
-| `alias` | The name of the alias to be deleted. | No |
-
-### Behavior
-
-- **With an alias:** If you provide an alias name, the command will delete that specific alias.
-- **Without an alias:** If you run the command without an alias, it will launch an interactive prompt, allowing you to select multiple aliases to delete.
+| Argument | Description                                                                                                                   | Required |
+| :------- | :---------------------------------------------------------------------------------------------------------------------------- | :------- |
+| `[alias]`  | The name of the alias to remove. If omitted, an interactive prompt will appear, allowing you to select multiple aliases for deletion. | No       |
 
 ### Examples
 
-**1. Remove a specific alias**
+**1. Remove a specific alias:**
 
 ```bash
-tw rm my-app
+tw rm docs
 ```
 
-Expected output:
+**2. Remove multiple aliases interactively:**
 
-```
-Alias my-app has been removed
-my-app => /Users/dev/new-path => 0
-```
-
-**2. Remove aliases using interactive mode**
-
-Run the command without any arguments to enter a selection prompt.
+Running the command without an alias will launch an interactive multi-select menu. Use the arrow keys to navigate, the spacebar to select, and enter to confirm.
 
 ```bash
 tw rm
 ```
 
-This will display a list where you can use the arrow keys and spacebar to select aliases for deletion:
+Upon execution, you will see a prompt similar to this:
 
 ```
-? Select the alias to be deleted233
-  Instructions: 
-    ↑/↓: Highlight option
-    ←/→/[space]: Toggle selection
-    a: Toggle all
-    [enter]: Done
-❯ ◯ project-a => /path/to/project-a => 10
-  ◯ project-b => /path/to/project-b => 5
-  ◯ project-c => /path/to/project-c => 2
+? Select the alias to be deleted233 (Press <space> to select, <a> to toggle all, <i> to invert selection)
+❯ ◯ my-app => /Users/user/projects/my-app => 15
+  ◯ website => /Users/user/projects/website => 10
+  ◯ docs => /Users/user/documents/personal => 5
 ```
 
 ---
 
-## ls
+## ls (or list)
 
-The `ls` command (aliased as `list`) displays your saved aliases, their corresponding paths, and their visit counts.
+The `ls` command (aliased as `list`) displays your saved aliases, their corresponding paths, and their usage frequency count. The list is sorted by the number of visits in descending order.
 
 ### Usage
 
 ```bash
 tw ls [alias]
-tw list [alias]
 ```
 
 ### Arguments
 
-| Parameter | Description | Required |
-|---|---|---|
-| `alias` | The name of a specific alias to display. If omitted, all aliases will be listed. | No |
+| Argument | Description                                                        | Required |
+| :------- | :----------------------------------------------------------------- | :------- |
+| `[alias]`  | The name of a specific alias to display. If omitted, all aliases are listed. | No       |
 
 ### Examples
 
-**1. List all saved aliases**
-
-The list is sorted by the number of visits in descending order.
+**1. List all aliases:**
 
 ```bash
 tw ls
 ```
 
-Expected output:
-
+Example output:
 ```
-project-a => /path/to/project-a => 10
-project-b => /path/to/project-b => 5
-project-c => /path/to/project-c => 2
+my-app => /Users/user/projects/my-app => 15
+website => /Users/user/projects/website => 10
+docs => /Users/user/documents/personal => 5
 ```
 
-**2. Display a specific alias**
+**2. Display details for a specific alias:**
 
 ```bash
-tw ls project-b
+tw ls my-app
 ```
 
-Expected output:
-
+Example output:
 ```
-project-b => /path/to/project-b => 5
+my-app => /Users/user/projects/my-app => 15
 ```
 
 ---
 
 ## clean
 
-The `clean` command removes all saved aliases. This action is irreversible and requires a confirmation flag.
+The `clean` command removes all saved aliases permanently. This is a destructive operation and requires a confirmation flag to prevent accidental data loss.
 
 ### Usage
 
 ```bash
-tw clean
+tw clean [options]
 ```
 
 ### Options
 
-| Parameter | Description | Required |
-|---|---|---|
-| `-f`, `--force` | Confirms the action to delete all aliases. This is a required safeguard. | Yes |
+| Option        | Description                                       | Required |
+| :------------ | :------------------------------------------------ | :------- |
+| `-f, --force` | Confirms the action to delete all aliases. This flag is mandatory for the command to execute. | Yes      |
 
 ### Examples
 
-**1. Attempting to clean without the force flag**
+**1. Attempting to clean without confirmation:**
 
-Running `clean` without `--force` will result in an error to prevent accidental data loss.
+Running `tw clean` without the `--force` flag will result in an error message to ensure you are aware of the action.
 
 ```bash
 tw clean
+# Output: To make sure you know what you're doing, you must use '-f' or '--force' to empty
 ```
 
-Expected output:
+**2. Clearing all aliases:**
 
-```
-To make sure you know what you're doing, you must use '-f' or '--force' to empty
-```
-
-**2. Clearing all aliases**
-
-Use the `--force` flag to proceed with the deletion.
+To proceed with deleting all aliases, use the `--force` flag.
 
 ```bash
 tw clean --force
+# All aliases will be removed.
 ```
-
-After executing, all aliases will be permanently removed.

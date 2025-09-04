@@ -1,36 +1,33 @@
 # Installation
 
-Before you can start using `to-where-cli`, you need to install it on your system. The tool is distributed as an npm package, which makes installation straightforward.
+`to-where-cli` is distributed as a Node.js package and can be installed using npm (Node Package Manager). Before proceeding, ensure you have Node.js and npm installed on your system.
 
 ## Prerequisites
 
-Make sure you have Node.js and npm (Node Package Manager) installed on your machine. `to-where-cli` currently supports the following operating systems:
+- **Operating System**: macOS or Windows.
 
-- macOS
-- Windows
+## Global Installation
 
-## Install via npm
+To make the `tw` command accessible from anywhere in your terminal, it is recommended to install the package globally. The `-g` flag in the command handles this.
 
-To make the `tw` command available from any directory in your terminal, you should install the package globally using the `-g` flag.
-
-Open your terminal and run the following command:
+Open your terminal and execute the following command:
 
 ```shell
 npm install -g to-where-cli
 ```
 
-This command fetches the package from the npm registry and installs it globally on your system.
+## Verify the Installation
 
-## Verify Your Installation
-
-After the installation is complete, you can verify that `to-where-cli` is ready to use by running the help command:
+Once the installation process is complete, you can verify that `to-where-cli` was installed correctly by running its help command. This command lists all available options and confirms that the CLI is properly linked in your system's path.
 
 ```shell
 tw -h
 ```
 
-If the installation was successful, this command will display the help menu, which lists all available commands and options.
+If the installation was successful, you will see the help output detailing the command's usage and options.
 
 ---
 
-Now that you have `to-where-cli` installed, you can proceed to learn about its core functionality. Continue to the [Basic Usage](./getting-started-basic-usage.md) guide to create your first alias.
+With the installation complete, you are ready to start using aliases to manage your URLs. The next section will guide you through the fundamental commands.
+
+➡️ **Next: [Basic Usage](./getting-started-basic-usage.md)**

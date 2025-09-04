@@ -1,16 +1,19 @@
 # 快速入门
 
-本指南提供了启动和运行 `to-where-cli` 所需的全部信息。您将学习如何安装该工具，并掌握管理 URL 别名的基本命令。
+本指南将引导你快速启动并运行 `to-where-cli`。你将学习如何安装该工具并执行基本的别名管理任务，为更高级的使用奠定坚实的基础。
 
-请按照以下步骤开始使用此命令行工具，以简化您的命令行导航操作。
+本节分为两个主要部分：安装和基本命令用法。请按顺序操作以开始使用。
 
 <x-cards>
   <x-card data-title="安装" data-icon="lucide:download" data-href="/getting-started/installation">
-    通过 npm，使用一行简单的命令即可在您的系统上全局安装此命令行工具。
+    提供使用 npm 全局安装 to-where-cli 的命令行指令。
   </x-card>
   <x-card data-title="基本用法" data-icon="lucide:terminal-square" data-href="/getting-started/basic-usage">
-    学习核心工作流程：通过简单易懂的实用示例，了解如何添加、使用、列出和删除别名。
+    一个快速教程，通过实际示例演示核心工作流程：添加、使用、列出和删除别名。
   </x-card>
 </x-cards>
 
-完成这些部分后，您将为使用 `to-where-cli` 打下坚实的基础。要详细了解所有可用命令及其选项，请参阅[命令参考](./command-reference.md)。
+
+## 后续步骤
+
+完成安装并熟悉基本命令后，你就可以探索 `to-where-cli` 提供的所有功能了。如需详细了解每个命令及其选项，请继续阅读[命令参考](./command-reference.md)。

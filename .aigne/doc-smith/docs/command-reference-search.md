@@ -1,10 +1,18 @@
 # Search Commands
 
-The `to-where-cli` provides a set of convenient subcommands to perform searches on popular developer platforms directly from your terminal. These commands open a new tab in your default web browser with the search results. The general syntax is `tw <platform> [keyword]`.
+The `to-where` CLI integrates several popular search engines, allowing you to quickly perform searches directly from your terminal. These commands will open the corresponding search results page in your default web browser.
 
-## `npm`
+<x-cards data-columns="3">
+  <x-card data-title="npm" data-icon="cib:npm">Search for packages on the npm registry.</x-card>
+  <x-card data-title="github" data-icon="cib:github">Search for repositories, code, and users on GitHub.</x-card>
+  <x-card data-title="google" data-icon="cib:google">Perform a web search using Google.</x-card>
+  <x-card data-title="bing" data-icon="cib:bing">Perform a web search using Bing.</x-card>
+  <x-card data-title="baidu" data-icon="cib:baidu">Perform a web search using Baidu.</x-card>
+</x-cards>
 
-The `npm` command allows you to search for packages on the npm registry and quickly access specific package pages like versions, dependencies, or source code.
+## npm
+
+The `npm` command allows you to search for packages on [npmjs.com](https://www.npmjs.com) and quickly access specific package pages like versions, dependencies, and code repositories.
 
 ### Usage
 
@@ -14,44 +22,52 @@ tw npm [keyword] [options]
 
 ### Arguments
 
-| Argument    | Description                                                                    |
-|-------------|--------------------------------------------------------------------------------|
-| `[keyword]` | The search term or package name. If omitted, it opens the [npm homepage](https://www.npmjs.com). |
+-   `[keyword]`: The name of the package or search term. If omitted, the command opens the npm homepage.
 
 ### Options
 
-| Option           | Alias | Description                                                        |
-|------------------|-------|--------------------------------------------------------------------|
-| `--code`         | `-c`  | Opens the package's code page.                                     |
-| `--dependencies` | `-d`  | Opens the package's dependencies page.                             |
-| `--version`      | `-v`  | Opens the package's versions page.                                 |
-| `--run-kit`      | `-r`  | Opens the package on [RunKit](https://runkit.com) for interactive testing. |
+| Option | Long Form      | Description                        |
+| :----- | :------------- | :--------------------------------- |
+| `-c`   | `--code`       | Open the package's code page.      |
+| `-d`   | `--dependencies` | Open the package's dependencies page. |
+| `-v`   | `--version`    | Open the package's versions page.  |
+| `-r`   | `--run-kit`    | Open the package's RunKit page.    |
 
 ### Examples
 
-```bash
-# Search for 'react' on npm
-tw npm react
+-   **Search for a package:**
 
-# Open the versions page for the 'commander' package
-tw npm commander -v
+    ```bash
+    tw npm react
+    ```
 
-# Open the dependencies page for the 'express' package
-tw npm express --dependencies
+-   **Open the versions page for a specific package:**
 
-# Open the code page for the 'lodash' package
-tw npm lodash -c
+    ```bash
+    tw npm express -v
+    ```
 
-# Open 'axios' on RunKit
-tw npm axios -r
+-   **View dependencies for a package:**
 
-# Open the npm homepage
-tw npm
-```
+    ```bash
+    tw npm commander -d
+    ```
 
-## `github`
+-   **Jump to the RunKit page:**
 
-Performs a search on GitHub.
+    ```bash
+    tw npm lodash -r
+    ```
+
+-   **Open the npm homepage:**
+
+    ```bash
+    tw npm
+    ```
+
+## github
+
+Performs a search on [github.com](https://github.com).
 
 ### Usage
 
@@ -61,23 +77,31 @@ tw github [keyword]
 
 ### Arguments
 
-| Argument    | Description                                                                  |
-|-------------|------------------------------------------------------------------------------|
-| `[keyword]` | The search term. If omitted, it opens the [GitHub search page](https://github.com/search). |
+-   `[keyword]`: The search term. If omitted, it opens the GitHub search page.
 
 ### Examples
 
-```bash
-# Search for repositories or code related to 'd3'
-tw github d3
+-   **Search for a repository:**
 
-# Open the main GitHub search page
-tw github
-```
+    ```bash
+    tw github to-where-cli
+    ```
 
-## `google`
+-   **Search for a user or topic:**
 
-Performs a search on Google.
+    ```bash
+    tw github nodejs
+    ```
+
+-   **Open GitHub's main search page:**
+
+    ```bash
+    tw github
+    ```
+
+## google
+
+Performs a standard web search using [google.com](https://www.google.com).
 
 ### Usage
 
@@ -85,16 +109,21 @@ Performs a search on Google.
 tw google [keyword]
 ```
 
+### Arguments
+
+-   `[keyword]`: The search term. If omitted, it opens the Google homepage.
+
 ### Examples
 
-```bash
-# Search for 'how to use git' on Google
-tw google "how to use git"
-```
+-   **Search for a topic:**
 
-## `bing`
+    ```bash
+    tw google "how to use commander.js"
+    ```
 
-Performs a search on Bing.
+## bing
+
+Performs a web search using [bing.com](https://www.bing.com).
 
 ### Usage
 
@@ -102,16 +131,21 @@ Performs a search on Bing.
 tw bing [keyword]
 ```
 
+### Arguments
+
+-   `[keyword]`: The search term. If omitted, it opens the Bing homepage.
+
 ### Examples
 
-```bash
-# Search for 'typescript tutorial' on Bing
-tw bing "typescript tutorial"
-```
+-   **Search for a topic:**
 
-## `baidu`
+    ```bash
+    tw bing "latest typescript features"
+    ```
 
-Performs a search on Baidu.
+## baidu
+
+Performs a web search using [baidu.com](https://www.baidu.com).
 
 ### Usage
 
@@ -119,13 +153,14 @@ Performs a search on Baidu.
 tw baidu [keyword]
 ```
 
+### Arguments
+
+-   `[keyword]`: The search term. If omitted, it opens the Baidu homepage.
+
 ### Examples
 
-```bash
-# Search for 'Vue.js' on Baidu
-tw baidu Vue.js
-```
+-   **Search for a topic:**
 
----
-
-Now that you've mastered searching, you might be interested in contributing to the project. Head over to the [Development Guide](./development.md) for details on the project structure and setup.
+    ```bash
+    tw baidu "Vue 3 教程"
+    ```

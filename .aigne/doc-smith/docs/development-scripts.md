@@ -1,19 +1,18 @@
 # Available Scripts
 
-The `package.json` file includes a set of npm scripts to assist with the development workflow, from building and testing to deploying the application. These scripts can be executed from the root of the project using the `npm run <script-name>` command.
-
-Below is a comprehensive list of the available scripts and their functions.
+The `package.json` file includes a set of scripts to streamline common development tasks. These scripts, executed with `npm run <script_name>`, handle everything from building the project and running tests to deploying the application. Below is a detailed reference for each available script.
 
 ## Core Development Scripts
 
-These scripts are central to the daily development and testing cycle.
+These scripts are central to the daily development workflow.
 
 | Script | Description |
 |---|---|
-| `build` | Compiles the TypeScript source code from the `src` folder into JavaScript, outputting the result to the `dist` directory. It uses `esbuild` for fast builds. |
-| `build:watch` | Runs the build process in watch mode. It automatically recompiles the code whenever a source file is changed, which is useful during active development. |
-| `debug` | Executes the compiled application directly using Node. This is helpful for testing the CLI's behavior after a build. It automatically runs the `build` script first. |
-| `deploy` | Performs a local global installation. This script builds the project, uninstalls any globally installed version of `to-where-cli`, and then installs the current local version globally. This is ideal for testing the end-to-end installation and execution flow on your machine. |
+| `npm run reinstall` | Deletes the `node_modules` directory and reinstalls all project dependencies using `pnpm`. Useful for resolving dependency issues. |
+| `npm run clean` | Removes the `dist` directory, cleaning out all compiled files from the previous build. |
+| `npm run build` | Compiles the TypeScript source code from the `src` directory into JavaScript in the `dist` directory using `esbuild`. It automatically runs the `clean` script first. |
+| `npm run build:watch` | Starts the build process in watch mode. It will automatically recompile the project whenever a source file is changed. |
+| `npm run debug` | Builds the project and then executes the main entry point (`dist/index.js`) with Node.js, allowing you to test the CLI's behavior directly. |
 
 ## Code Quality and Testing
 
@@ -21,24 +20,23 @@ These scripts help maintain code quality and ensure the application is working a
 
 | Script | Description |
 |---|---|
-| `lint` | Lints all TypeScript files in the `src` directory using ESLint to check for code quality and style issues. |
-| `lint:fix` | Runs the linter and automatically fixes any rules that are autofixable. |
-| `test` | Executes the entire test suite using Jest. |
-| `coverage` | Runs the test suite and generates a code coverage report to identify untested parts of the codebase. |
-| `verify` | A utility script that runs both `lint` and `test` to ensure code quality and correctness before committing changes. |
+| `npm run lint` | Lints all TypeScript files within the `src` directory using ESLint to check for code style and potential errors. |
+| `npm run lint:fix` | Lints the codebase and automatically fixes any issues that are safe to correct. |
+| `npm run test` | Executes the entire test suite using Jest. |
+| `npm run coverage` | Runs the test suite and generates a code coverage report, showing how much of the code is covered by tests. |
+| `npm run verify` | A convenience script that runs both `lint` and `test`. This is useful to run before committing changes to ensure code quality and functionality. |
 
-## Housekeeping and Versioning
+## Deployment and Versioning
 
-These scripts handle project maintenance, dependencies, and version management.
+These scripts are used for deploying the application and managing its version number.
 
 | Script | Description |
 |---|---|
-| `clean` | Deletes the `dist` directory, removing all previously compiled files. This is automatically run before each `build`. |
-| `reinstall` | Deletes the `node_modules` directory and reinstalls all project dependencies using `pnpm`. Useful for resolving dependency conflicts or starting with a clean slate. |
-| `deploy:remote` | Uninstalls the existing global `to-where-cli` package and reinstalls the latest version from the official npm registry. |
-| `bump-version` | Bumps the package version in `package.json` automatically. |
-| `show:version` | Queries the npm registry and displays the latest published version number for `to-where-cli`. |
+| `npm run deploy` | Performs a local global deployment. It builds the project, uninstalls any existing global `to-where-cli` package, and then installs the current local project globally. This is ideal for testing the final build as a user would. |
+| `npm run deploy:remote` | Uninstalls the current global version and reinstalls the latest version published on the npm registry. This is useful for switching back to the official release. |
+| `npm run bump-version` | Increments the version number in `package.json` using the `ver-bump` utility. |
+| `npm run show:version` | Queries the npm registry to display the latest published version of `to-where-cli`. |
 
 ---
 
-With an understanding of the development scripts, you can explore the project's evolution in the [Changelog](./changelog.md).
+With an understanding of these development scripts, you can build, test, and contribute to the project. To see a history of changes and new features, you can proceed to the [Changelog](./changelog.md).

@@ -1,112 +1,93 @@
 # Git 命令
 
-`tw git` 命令提供了一种便捷的方式，让你可以直接在终端中快速打开项目托管的 Git 仓库（如 GitHub、GitLab 等）的各种页面。它会读取你本地仓库的远程 URL，并为 issues、pull requests 和特定分支等常见目标构建正确的地址。
-
-这让你无需在浏览器中手动查找仓库并浏览其界面。
-
-## 工作原理
-
-该命令遵循一个简单的流程来打开正确的网页：
-
-```d2
-direction: down
-shape: sequence_diagram
-
-开发者
-终端
-"to-where-cli"
-"Git 主机 (例如 GitHub)"
-
-开发者 -> 终端: "运行 `tw git --issue`"
-终端 -> "to-where-cli": "执行命令"
-"to-where-cli" -> "to-where-cli": "读取 .git/config 查找远程 URL"
-"to-where-cli" -> "to-where-cli": "构建 URL: https://github.com/user/repo/issues"
-"to-where-cli" -> "Git 主机 (例如 GitHub)": "在默认浏览器中打开 URL"
-
-```
+`tw git` 命令提供了一种便捷的方式，可以直接从命令行快速打开项目 git 仓库（例如 GitHub、GitLab）的各种页面。它会自动检测你的远程仓库 URL，并在默认浏览器中导航到指定页面。
 
 ## 用法
 
-`git` 是默认子命令，因此你可以使用 `tw git [options]`。
+要使用该命令，请在作为 git 仓库的目录中运行它。
 
 ```bash
 tw git [options]
+# or explicitly
+tw git open [options]
 ```
 
-如果未提供任何选项，该命令将默认打开仓库当前分支的主页。
+如果未提供任何选项，该命令默认打开当前分支的主页面。
 
 ## 选项
 
-以下是 `tw git` 命令所有可用选项的完整列表：
+`git` 命令支持多种选项，用于导航到仓库的不同部分。
 
 | 选项 | 别名 | 描述 |
 |---|---|---|
-| `--actions` | `-a` | 打开仓库的 Actions/CI 页面。 |
-| `--author` | | 打开最后一次提交的作者的个人主页。 |
-| `--branch [branch]` | `-b` | 打开指定分支的页面。如果省略 `[branch]`，则默认为当前分支。 |
-| `--commit [hash]` | `-c` | 打开指定提交的页面。如果省略 `[hash]`，则默认为最新一次提交。 |
-| `--committer` | | 打开最后一次提交的提交者的个人主页。 |
-| `--file <filePath>` | `-f` | 在当前分支中打开指定文件的页面。 |
-| `--find` | | 打开当前分支的文件搜索页面。 |
-| `--first-commit` | | 打开仓库历史记录中第一次提交的页面。 |
-| `--issue` | `-i` | 打开 issues 列表页面。 |
-| `--main` | `-m` | 打开仓库默认分支的主页。 |
-| `--pull-request` | `-p` | 打开 pull request 列表页面。 |
-| `--pull [branch]` | | 打开创建新 pull request 的页面。如果未指定 `[branch]`，则默认为当前分支。 |
-| `--release` | `-r` | 打开 releases 页面。 |
+| `--actions` | `-a` | 打开仓库的 Actions (CI/CD) 页面。 |
+| `--author` | | 打开最后一次提交的作者的个人资料页面。 |
+| `--branch [branch]` | `-b` | 打开指定的分支页面。如果未提供分支名称，则默认为当前分支。 |
+| `--commit [hash]` | `-c` | 打开指定的提交页面。如果未提供哈希值，则默认为最新提交。 |
+| `--committer` | | 打开最后一次提交的提交者的个人资料页面。 |
+| `--file <filePath>` | `-f` | 打开当前分支上特定文件的页面。 |
+| `--find` | | 打开当前分支的文件查找器/搜索页面。 |
+| `--first-commit` | | 打开仓库的第一个提交页面。 |
+| `--issue` | `-i` | 打开问题列表页面。 |
+| `--main` | `-m` | 打开仓库的主分支页面。 |
+| `--pull-request` | `-p` | 打开拉取请求列表页面。 |
+| `--pull [branch]` | | 打开创建新拉取请求的页面，默认为当前分支。 |
+| `--release` | `-r` | 打开发布页面。 |
 | `--settings` | `-s` | 打开仓库设置页面。 |
-| `--star` | | 打开仓库的 stargazers 页面。 |
+| `--star` | | 打开 stargazers 页面。 |
 
 ## 示例
 
-### 打开当前分支
+以下是一些如何使用 `tw git` 命令的实际示例。
 
-打开当前工作分支的仓库页面。如果未提供任何选项，则这是默认操作。
+### 打开仓库主页
+
+要打开当前分支的仓库主页，只需运行不带任何选项的命令即可。
 
 ```bash
 tw git
 ```
 
-### 打开 Issues 页面
+### 查看问题和拉取请求
 
-直接跳转到仓库的 issues 列表。
-
-```bash
-tw git -i
-```
-
-### 打开 Pull Requests
-
-打开所有 pull request 的列表。
+快速导航到问题或拉取请求列表。
 
 ```bash
+# 打开问题列表
+tw git --issue
+
+# 打开拉取请求列表
 tw git -p
 ```
 
-### 创建新的 Pull Request
+### 创建新的拉取请求
 
-打开创建新 pull request 的页面，并将当前分支作为头部分支。
+要为当前分支打开“新建拉取请求”页面，请使用 `--pull` 选项。
 
 ```bash
 tw git --pull
 ```
 
-### 查看特定提交
+### 检查分支和提交
 
-打开特定提交哈希值的页面。
+查看特定的分支或提交页面。
 
 ```bash
+# 打开当前分支的页面
+tw git -b
+
+# 按哈希值打开指定的提交
 tw git -c a1b2c3d4
 ```
 
 ### 查看特定文件
 
-跳转到仓库内的指定文件。
+在当前分支上打开仓库中的特定文件。
 
 ```bash
-tw git -f "src/cli/git/index.ts"
+tw git -f "src/cli/git/open.ts"
 ```
 
 ---
 
-掌握仓库导航后，可通过 [搜索命令](./command-reference-search.md) 学习如何直接从终端执行网页搜索。
+现在你已经熟悉了 `git` 命令，你可能想探索与其他在线服务交互的其他方式。更多信息，请参阅 [搜索命令](./command-reference-search.md) 文档。

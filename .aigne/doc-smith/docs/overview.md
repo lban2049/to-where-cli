@@ -1,57 +1,57 @@
 # Overview
 
-`to-where-cli` is a command-line tool designed to simplify your workflow by using an alias mechanism to open obscure or hard-to-remember URLs. It helps you quickly access various addresses, from GitHub repositories to the search pages of npm, Google, and other sites, directly from your terminal.
+`to-where-cli` is a command-line tool designed to simplify your workflow by replacing long, hard-to-remember URLs with simple, intuitive aliases. It allows you to quickly open project repositories, documentation, and search pages directly from your terminal, saving you time and effort.
 
-### Core Concept
-
-The tool works by mapping a simple, memorable alias to a complex URL. Once an alias is set, you can use it with the `tw` command to open the corresponding address in your default browser.
+Instead of manually navigating through browser bookmarks or typing out complex web addresses, you can use a short command to get where you need to go instantly.
 
 ```d2
-direction: right
+direction: down
 
-User: {
+"Developer": {
   shape: person
 }
 
-"CLI: to-where-cli": {
+"Terminal": {
   shape: rectangle
+  "tw home": "User types a short alias"
 }
 
-"URL: Website / Search Page": {
-  shape: cloud
+"to-where-cli": {
+  shape: package
+  "Alias Lookup": "Resolves 'home' to its full URL"
 }
 
-User -> "CLI: to-where-cli": "Executes command (e.g., 'tw home')"
-"CLI: to-where-cli" -> "URL: Website / Search Page": "Resolves alias and opens URL in browser"
+"Default Browser": {
+  shape: rectangle
+  "Opens the resolved URL"
+}
+
+"Developer" -> "Terminal": "1. Executes command"
+"Terminal" -> "to-where-cli": "2. Invokes CLI"
+"to-where-cli" -> "Default Browser": "3. Launches URL"
 ```
 
-### Key Features
-
-`to-where-cli` provides several features to streamline your command-line navigation.
+## Key Features
 
 <x-cards data-columns="3">
-  <x-card data-title="Alias Management" data-icon="lucide:link">
-    Create, list, update, and remove custom aliases for any URL, making long and complex addresses easily accessible.
+  <x-card data-title="Effortless Alias Management" data-icon="lucide:bookmark-plus">
+    Create, list, update, and remove simple aliases for any URL directly from your command line.
   </x-card>
-  <x-card data-title="Git Integration" data-icon="lucide:github">
-    Directly open specific pages of a Git repository, such as issues, pull requests, or the project homepage.
+  <x-card data-title="Quick GitHub Navigation" data-icon="lucide:github">
+    Instantly open specific pages of a git repository, such as issues, pull requests, or the main project page.
   </x-card>
-  <x-card data-title="Quick Search" data-icon="lucide:search">
-    Jump straight to search results on platforms like npm, GitHub, Google, Bing, and Baidu without opening a browser first.
+  <x-card data-title="Integrated Search Shortcuts" data-icon="lucide:search">
+    Perform searches directly on npm, GitHub, Google, Bing, and Baidu without needing to open your browser first.
   </x-card>
 </x-cards>
 
-### Supported Platforms
+## Supported Platforms
 
-Currently, `to-where-cli` officially supports the following operating systems:
+The CLI is currently supported and tested on the following operating systems:
 
 - macOS
 - Windows
 
-### Next Steps
+## Next Steps
 
-Ready to simplify your URL management? Follow the installation guide to get started.
-
-<x-card data-title="Getting Started" data-icon="lucide:rocket" data-href="/getting-started/installation" data-cta="Install the CLI">
-  A step-by-step guide for new users to install the CLI and learn the basic commands for alias management.
-</x-card>
+Ready to get started? Head over to the [Installation](./getting-started-installation.md) guide to set up `to-where-cli` on your system and create your first alias.

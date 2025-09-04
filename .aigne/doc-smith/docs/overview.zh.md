@@ -1,57 +1,57 @@
 # 概述
 
-`to-where-cli` 是一款命令行工具，旨在通过别名机制简化你的工作流程，让你能轻松打开那些晦涩难记的 URL。它能帮助你直接从终端快速访问各种地址，无论是 GitHub 仓库，还是 npm、Google 等网站的搜索页面。
+`to-where-cli` 是一个命令行工具，旨在通过将冗长、难记的 URL 替换为简单、直观的别名来简化您的工作流程。它允许您直接从终端快速打开项目仓库、文档和搜索页面，从而节省您的时间和精力。
 
-### 核心概念
-
-该工具的工作原理是将一个简单易记的别名映射到一个复杂的 URL。设置别名后，你便可以使用 `tw` 命令在默认浏览器中打开对应的地址。
+您无需再手动浏览浏览器书签或输入复杂的网址，只需使用一个简短的命令即可立即到达您需要去的地方。
 
 ```d2
-direction: right
+direction: down
 
-用户: {
+"Developer": {
   shape: person
 }
 
-"命令行工具：to-where-cli": {
+"Terminal": {
   shape: rectangle
+  "tw home": "用户输入一个简短的别名"
 }
 
-"URL：网站/搜索页面": {
-  shape: cloud
+"to-where-cli": {
+  shape: package
+  "Alias Lookup": "将 'home' 解析为其完整的 URL"
 }
 
-用户 -> "命令行工具：to-where-cli": "执行命令 (例如 'tw home')"
-"命令行工具：to-where-cli" -> "URL：网站/搜索页面": "解析别名并在浏览器中打开 URL"
+"Default Browser": {
+  shape: rectangle
+  "打开解析后的 URL"
+}
+
+"Developer" -> "Terminal": "1. 执行命令"
+"Terminal" -> "to-where-cli": "2. 调用 CLI"
+"to-where-cli" -> "Default Browser": "3. 启动 URL"
 ```
 
-### 主要功能
-
-`to-where-cli` 提供了多种功能，可简化你的命令行导航操作。
+## 主要特性
 
 <x-cards data-columns="3">
-  <x-card data-title="别名管理" data-icon="lucide:link">
-    为任意 URL 创建、列出、更新和删除自定义别名，让你能轻松访问冗长复杂的地址。
+  <x-card data-title="轻松管理别名" data-icon="lucide:bookmark-plus">
+    直接从命令行创建、列出、更新和删除任何 URL 的简单别名。
   </x-card>
-  <x-card data-title="Git 集成" data-icon="lucide:github">
-    直接打开 Git 仓库的特定页面，如 issues、pull requests 或项目主页。
+  <x-card data-title="快速 GitHub 导航" data-icon="lucide:github">
+    即时打开 git 仓库的特定页面，例如 issues、pull requests 或项目主页。
   </x-card>
-  <x-card data-title="快速搜索" data-icon="lucide:search">
-    无需预先打开浏览器，直接跳转到 npm、GitHub、Google、Bing、Baidu 等平台的搜索结果页面。
+  <x-card data-title="集成搜索快捷方式" data-icon="lucide:search">
+    无需先打开浏览器，即可直接在 npm、GitHub、Google、Bing 和 Baidu 上执行搜索。
   </x-card>
 </x-cards>
 
-### 支持平台
+## 支持的平台
 
-`to-where-cli` 目前官方支持以下操作系统：
+该 CLI 目前在以下操作系统上得到支持和测试：
 
 - macOS
 - Windows
 
-### 下一步
+## 后续步骤
 
-准备好简化你的 URL 管理了吗？请根据安装指南开始使用。
-
-<x-card data-title="开始使用" data-icon="lucide:rocket" data-href="/getting-started/installation" data-cta="安装命令行工具">
-  面向新用户的分步指南，指导他们安装命令行工具并学习别名管理的基础命令。
-</x-card>
+准备好开始了吗？请前往 [安装](./getting-started-installation.md) 指南，在您的系统上设置 `to-where-cli` 并创建您的第一个别名。

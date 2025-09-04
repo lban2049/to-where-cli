@@ -1,10 +1,18 @@
 # 搜索命令
 
-`to-where-cli` 提供了一组方便的子命令，可直接从终端在热门的开发者平台上执行搜索。这些命令会在默认的网络浏览器中打开一个新标签页，并显示搜索结果。通用语法为 `tw <platform> [keyword]`。
+`to-where` CLI 集成了多个流行的搜索引擎，让你可以直接从终端快速执行搜索。这些命令将在你的默认网络浏览器中打开相应的搜索结果页面。
 
-## `npm`
+<x-cards data-columns="3">
+  <x-card data-title="npm" data-icon="cib:npm">在 npm 注册表上搜索包。</x-card>
+  <x-card data-title="github" data-icon="cib:github">在 GitHub 上搜索仓库、代码和用户。</x-card>
+  <x-card data-title="google" data-icon="cib:google">使用 Google 进行网络搜索。</x-card>
+  <x-card data-title="bing" data-icon="cib:bing">使用 Bing 进行网络搜索。</x-card>
+  <x-card data-title="baidu" data-icon="cib:baidu">使用百度进行网络搜索。</x-card>
+</x-cards>
 
-`npm` 命令允许你在 npm 注册表上搜索软件包，并快速访问特定软件包页面，如版本、依赖项或源代码。
+## npm
+
+`npm` 命令允许你在 [npmjs.com](https://www.npmjs.com) 上搜索包，并快速访问特定的包页面，如版本、依赖项和代码仓库。
 
 ### 用法
 
@@ -14,44 +22,52 @@ tw npm [keyword] [options]
 
 ### 参数
 
-| 参数 | 描述 |
-|---|---|
-| `[keyword]` | 搜索词或软件包名称。如果省略，将打开 [npm 主页](https://www.npmjs.com)。 |
+-   `[keyword]`：包的名称或搜索词。如果省略，该命令将打开 npm 主页。
 
 ### 选项
 
-| 选项 | 别名 | 描述 |
-|---|---|---|
-| `--code` | `-c` | 打开软件包的代码页面。 |
-| `--dependencies` | `-d` | 打开软件包的依赖项页面。 |
-| `--version` | `-v` | 打开软件包的版本页面。 |
-| `--run-kit` | `-r` | 在 [RunKit](https://runkit.com) 上打开该软件包以进行交互式测试。 |
+| 选项 | 长格式      | 描述                        |
+| :----- | :------------- | :--------------------------------- |
+| `-c`   | `--code`       | 打开包的代码页面。      |
+| `-d`   | `--dependencies` | 打开包的依赖项页面。 |
+| `-v`   | `--version`    | 打开包的版本页面。  |
+| `-r`   | `--run-kit`    | 打开包的 RunKit 页面。    |
 
 ### 示例
 
-```bash
-# 在 npm 上搜索 'react'
-tw npm react
+-   **搜索一个包：**
 
-# 打开 'commander' 软件包的版本页面
-tw npm commander -v
+    ```bash
+    tw npm react
+    ```
 
-# 打开 'express' 软件包的依赖项页面
-tw npm express --dependencies
+-   **打开特定包的版本页面：**
 
-# 打开 'lodash' 软件包的代码页面
-tw npm lodash -c
+    ```bash
+    tw npm express -v
+    ```
 
-# 在 RunKit 上打开 'axios'
-tw npm axios -r
+-   **查看包的依赖项：**
 
-# 打开 npm 主页
-tw npm
-```
+    ```bash
+    tw npm commander -d
+    ```
 
-## `github`
+-   **跳转到 RunKit 页面：**
 
-在 GitHub 上执行搜索。
+    ```bash
+    tw npm lodash -r
+    ```
+
+-   **打开 npm 主页：**
+
+    ```bash
+    tw npm
+    ```
+
+## github
+
+在 [github.com](https://github.com) 上执行搜索。
 
 ### 用法
 
@@ -61,23 +77,31 @@ tw github [keyword]
 
 ### 参数
 
-| 参数 | 描述 |
-|---|---|
-| `[keyword]` | 搜索词。如果省略，将打开 [GitHub 搜索页面](https://github.com/search)。 |
+-   `[keyword]`：搜索词。如果省略，将打开 GitHub 搜索页面。
 
 ### 示例
 
-```bash
-# 搜索与 'd3' 相关的仓库或代码
-tw github d3
+-   **搜索仓库：**
 
-# 打开 GitHub 主搜索页面
-tw github
-```
+    ```bash
+    tw github to-where-cli
+    ```
 
-## `google`
+-   **搜索用户或主题：**
 
-在 Google 上执行搜索。
+    ```bash
+    tw github nodejs
+    ```
+
+-   **打开 GitHub 的主搜索页面：**
+
+    ```bash
+    tw github
+    ```
+
+## google
+
+使用 [google.com](https://www.google.com) 执行标准的网络搜索。
 
 ### 用法
 
@@ -85,16 +109,21 @@ tw github
 tw google [keyword]
 ```
 
+### 参数
+
+-   `[keyword]`：搜索词。如果省略，将打开 Google 主页。
+
 ### 示例
 
-```bash
-# 在 Google 上搜索 'how to use git'
-tw google "how to use git"
-```
+-   **搜索主题：**
 
-## `bing`
+    ```bash
+    tw google "how to use commander.js"
+    ```
 
-在 Bing 上执行搜索。
+## bing
+
+使用 [bing.com](https://www.bing.com) 执行网络搜索。
 
 ### 用法
 
@@ -102,16 +131,21 @@ tw google "how to use git"
 tw bing [keyword]
 ```
 
+### 参数
+
+-   `[keyword]`：搜索词。如果省略，将打开 Bing 主页。
+
 ### 示例
 
-```bash
-# 在 Bing 上搜索 'typescript tutorial'
-tw bing "typescript tutorial"
-```
+-   **搜索主题：**
 
-## `baidu`
+    ```bash
+    tw bing "latest typescript features"
+    ```
 
-在百度上执行搜索。
+## baidu
+
+使用 [baidu.com](https://www.baidu.com) 执行网络搜索。
 
 ### 用法
 
@@ -119,13 +153,14 @@ tw bing "typescript tutorial"
 tw baidu [keyword]
 ```
 
+### 参数
+
+-   `[keyword]`：搜索词。如果省略，将打开百度主页。
+
 ### 示例
 
-```bash
-# 在百度上搜索 'Vue.js'
-tw baidu Vue.js
-```
+-   **搜索主题：**
 
----
-
-既然你已经掌握了搜索功能，你可能会对为该项目做出贡献感兴趣。请前往 [开发指南](./development.md) 查看有关项目结构和设置的详细信息。
+    ```bash
+    tw baidu "Vue 3 教程"
+    ```

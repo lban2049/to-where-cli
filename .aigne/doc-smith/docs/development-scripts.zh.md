@@ -1,19 +1,18 @@
 # 可用脚本
 
-`package.json` 文件包含一组 npm 脚本，用于辅助开发工作流程，涵盖了从构建、测试到部署应用的各个环节。这些脚本可以在项目根目录下使用 `npm run <script-name>` 命令执行。
-
-下面是可用脚本及其功能的完整列表。
+`package.json` 文件包含一系列脚本，用于简化常见的开发任务。这些脚本通过 `npm run <script_name>` 执行，涵盖了从构建项目、运行测试到部署应用的全部流程。下文将详细介绍每个可用脚本。
 
 ## 核心开发脚本
 
-这些脚本是日常开发和测试周期的核心。
+这些脚本是日常开发工作流的核心。
 
 | 脚本 | 描述 |
 |---|---|
-| `build` | 编译 `src` 文件夹中的 TypeScript 源代码为 JavaScript，并将结果输出到 `dist` 目录。它使用 `esbuild` 以实现快速构建。 |
-| `build:watch` | 以观察模式运行构建过程。每当源文件发生更改时，它会自动重新编译代码，这在活跃的开发过程中非常有用。 |
-| `debug` | 直接使用 Node 执行已编译的应用程序。这有助于在构建后测试 CLI 的行为。它会自动先运行 `build` 脚本。 |
-| `deploy` | 执行本地全局安装。该脚本会构建项目，卸载任何全局安装的 `to-where-cli` 版本，然后将当前的本地版本进行全局安装。这对于在你的机器上测试端到端的安装和执行流程非常理想。 |
+| `npm run reinstall` | 删除 `node_modules` 目录并使用 `pnpm` 重新安装所有项目依赖。可用于解决依赖问题。 |
+| `npm run clean` | 移除 `dist` 目录，清除上一次构建生成的所有编译文件。 |
+| `npm run build` | 使用 `esbuild` 将 `src` 目录中的 TypeScript 源代码编译成 JavaScript 并输出到 `dist` 目录。该脚本会自动先运行 `clean` 脚本。 |
+| `npm run build:watch` | 以观察模式启动构建过程。源文件发生变化时，它会自动重新编译项目。 |
+| `npm run debug` | 构建项目，然后使用 Node.js 执行主入口文件（`dist/index.js`），以便直接测试 CLI 的行为。 |
 
 ## 代码质量与测试
 
@@ -21,24 +20,23 @@
 
 | 脚本 | 描述 |
 |---|---|
-| `lint` | 使用 ESLint 对 `src` 目录下的所有 TypeScript 文件进行代码检查，以发现代码质量和风格问题。 |
-| `lint:fix` | 运行 linter 并自动修复任何可自动修复的规则。 |
-| `test` | 使用 Jest 执行整个测试套件。 |
-| `coverage` | 运行测试套件并生成代码覆盖率报告，以识别代码库中未经测试的部分。 |
-| `verify` | 一个实用脚本，同时运行 `lint` 和 `test`，以在提交更改前确保代码的质量和正确性。 |
+| `npm run lint` | 使用 ESLint 对 `src` 目录下的所有 TypeScript 文件进行代码检查，以发现代码风格和潜在错误。 |
+| `npm run lint:fix` | 对代码库进行检查，并自动修复所有可安全修正的问题。 |
+| `npm run test` | 使用 Jest 执行完整的测试套件。 |
+| `npm run coverage` | 运行测试套件并生成代码覆盖率报告，显示代码被测试覆盖的程度。 |
+| `npm run verify` | 一个便捷脚本，同时运行 `lint` 和 `test`。在提交变更前运行此脚本有助于确保代码质量和功能正常。 |
 
-## 日常维护与版本控制
+## 部署与版本管理
 
-这些脚本用于处理项目维护、依赖项和版本管理。
+这些脚本用于部署应用程序和管理其版本号。
 
 | 脚本 | 描述 |
 |---|---|
-| `clean` | 删除 `dist` 目录，移除所有先前编译的文件。该脚本会在每次 `build` 前自动运行。 |
-| `reinstall` | 删除 `node_modules` 目录并使用 `pnpm` 重新安装所有项目依赖。这对于解决依赖冲突或从一个干净的状态开始非常有用。 |
-| `deploy:remote` | 卸载现有的全局 `to-where-cli` 包，并从官方 npm 注册表重新安装最新版本。 |
-| `bump-version` | 自动提升 `package.json` 中的包版本。 |
-| `show:version` | 查询 npm 注册表并显示 `to-where-cli` 最新发布的版本号。 |
+| `npm run deploy` | 执行本地全局部署。它会构建项目，卸载任何已存在的全局 `to-where-cli` 包，然后将当前的本地项目全局安装。这非常适合像用户一样测试最终的构建版本。 |
+| `npm run deploy:remote` | 卸载当前的全局版本，并重新安装 npm 注册表上发布的最新版本。这有助于切换回官方发布版本。 |
+| `npm run bump-version` | 使用 `ver-bump` 工具增加 `package.json` 中的版本号。 |
+| `npm run show:version` | 查询 npm 注册表以显示 `to-where-cli` 的最新发布版本。 |
 
 ---
 
-了解了这些开发脚本后，你可以在 [Changelog](./changelog.md) 中探索项目的演变过程。
+了解这些开发脚本后，你就可以构建、测试并为项目做出贡献。如需查看变更历史和新增功能，请前往 [Changelog](./changelog.md)。
