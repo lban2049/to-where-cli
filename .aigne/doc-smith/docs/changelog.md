@@ -1,87 +1,69 @@
 # Changelog
 
-This page documents the history of changes, new features, and bug fixes for each version of `to-where-cli`.
+This is a detailed log of all changes, new features, and bug fixes for each version of `to-where-cli`.
 
-## [0.0.23] - 2024-06-06
+## 0.0.23 (June 06, 2024)
 
-### Chore
-- Removed unused code.
+- **chore**: remove useless codes.
 
-## [0.0.22] - 2024-06-06
+## 0.0.22 (June 06, 2024)
 
-### Features
-- Added RunKit options to the `npm` command.
+- **feat**: add run kit options to npm command.
 
-## [0.0.21] - 2023-09-13
+## 0.0.21 (September 13, 2023)
 
-### Features
-- Extended the `npm` command with new options (`tw npm -c/-d/-v`).
+- **feat**: extend npm command (`tw npm -c/-d/-v`).
 
-## [0.0.20] - 2023-07-11
+## 0.0.20 (July 11, 2023)
 
-### Features
-- Added support for opening a specified branch.
-- Added support for opening the first commit of a repository.
+- **feat**: supports opening a specified branch.
+- **feat**: support for opening the first commit.
 
-## [0.0.19] - 2023-05-21
+## 0.0.19 (May 21, 2023)
 
-### Features
-- Added support for opening a specified branch.
-- Added support for opening the first commit.
+- **feat**: supports opening a specified branch.
+- **feat**: support for opening the first commit.
+- **docs**: update README.md, update gitbook site documentation.
 
-### Documentation
-- Updated `README.md` and the GitBook site documentation.
+## 0.0.18 (May 14, 2023)
 
-## [0.0.18] - 2023-05-14
+- **feat**: perfecting the test.
 
-### Features
-- Improved test coverage and implementation.
+## 0.0.17 (February 26, 2023)
 
-## [0.0.17] - 2023-02-26
+- **feat**: support for opening the star screen of a project.
+- **feat**: support remove multiple alias when use `tw rm`.
 
-### Features
-- Added support for opening the star page of a project.
-- Added support for removing multiple aliases using `tw rm`.
+## 0.0.16 (February 10, 2023)
 
-## [0.0.16] - 2023-02-10
+- **feat**: support on npm, baidu, google, bing, github page search.
+- **feat**: the `tw list` subcommand supports the use of the `tw ls` shorthand.
 
-### Features
-- Added support for searching on npm, Baidu, Google, Bing, and GitHub pages.
-- The `tw list` subcommand now accepts `tw ls` as a shorthand.
+## 0.0.15 (February 06, 2023)
 
-## [0.0.15] - 2023-02-06
+- **feat**: `git` subcommand work with git ssh-url.
 
-### Features
-- The `git` subcommand now works with Git SSH URLs.
+## 0.0.14 (February 03, 2023)
 
-## [0.0.14] - 2023-02-03
+- **feat**: support using `tw git open --pull` to create pr.
 
-### Features
-- Added support for creating a pull request using `tw git open --pull`.
+## 0.0.13 (January 28, 2023)
 
-## [0.0.13] - 2023-01-28
+- **feat**: support release of beta version of to-where-cli.
+- **fix**: windows installation error: to-where-cli@0.0.12 preinstall: npx only-allow pnpm.
+- **feat**: version check before release.
 
-### Features
-- Added support for releasing beta versions of `to-where-cli`.
-- Implemented a version check before release.
+## 0.0.12 (January 27, 2023)
 
-### Bug Fixes
-- Fixed a Windows installation error caused by the `npx only-allow pnpm` preinstall script.
+- **fix**: README.md file error problem.
 
-## [0.0.12] - 2023-01-27
+## 0.0.11 (January 27, 2023)
 
-### Bug Fixes
-- Corrected an error in the `README.md` file.
+- **feat**: support to open the file with the specified path through `tw git open --file xxx`.
+- **feat**: support to open the commit with the specified hash through `tw git open -c xxx`.
 
-## [0.0.11] - 2023-01-27
+## 0.0.10 (January 27, 2023)
 
-### Features
-- Added support for opening a file at a specified path via `tw git open --file <path>`.
-- Added support for opening a specific commit via `tw git open -c <hash>`.
-
-## [0.0.10] - 2023-01-27
-
-### Features
-- Added support for the Windows operating system.
-- Added support for opening various Git pages, including branches, issues, and pull requests.
-- Implemented visit statistics tracking.
+- **feat**: windows system supported.
+- **feat**: support opening git branch page, issue list page, pr list page, etc.
+- **feat**: support statistics visits.

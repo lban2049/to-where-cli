@@ -1,73 +1,62 @@
 # Basic Usage
 
-This guide provides a quick tutorial on the core workflow of `to-where-cli`. You'll learn how to add, use, list, update, and remove aliases through practical command-line examples.
+Once `to-where-cli` is installed, you can immediately start managing your address aliases. This guide walks you through the fundamental workflow: adding a new alias, opening its associated address, listing your saved aliases, and removing them when they are no longer needed.
 
-## Adding an Alias
+## Add an Alias
 
-The most fundamental command is `add`. It associates a memorable alias with a longer address, such as a URL or a local directory path.
+To save a URL or a local file path with a memorable name, use the `tw add` command. The command follows the structure `tw add <alias> <address>`.
 
-For example, to create an alias named `home` for a GitHub profile, run:
+For example, to create an alias named `home` for a GitHub profile URL:
 
 ```shell
 tw add home https://github.com/skypesky
 ```
 
-If you run `tw add` without providing an address, it will default to using your current working directory. If you also omit the alias, it will use the directory's name as the alias.
+If you omit the alias and address, the command will use the current working directory as the address and the directory's name as the alias.
 
-```shell
-# In /Users/me/my-project
-tw add
-# This is equivalent to: tw add my-project /Users/me/my-project
-```
+## Open an Address by Alias
 
-## Opening an Address by Alias
-
-Once an alias is set, you can open the corresponding address simply by typing `tw` followed by the alias name. This will open the URL in your default browser or the directory in your file explorer.
+To open the address linked to an alias, simply run `tw` followed by the alias name. This will open the URL or path in the appropriate default application (e.g., a web browser for URLs).
 
 ```shell
 tw home
 ```
 
-## Listing Aliases
+Executing this command will open `https://github.com/skypesky` in your default browser.
 
-To see a list of all your saved aliases and their corresponding addresses, use the `ls` or `list` command.
+## List Your Aliases
+
+To view all your saved aliases and their corresponding addresses, use the `tw ls` command. The `list` command is an alias for `ls`.
 
 ```shell
 tw ls
 ```
 
-You can also check the address for a specific alias:
+If you want to check the address for a specific alias, you can pass the alias name as an argument:
 
 ```shell
 tw ls home
 ```
 
-## Updating an Alias
+## Update an Alias
 
-To update the address associated with an existing alias, simply use the `add` command again with the same alias and the new address. By default, the tool will overwrite the old entry. You can also use the `--force` or `-f` flag to make this explicit.
+To change the address associated with an existing alias, simply use the `tw add` command again with the same alias name. The new address will overwrite the previous one.
 
 ```shell
-# This command updates the 'home' alias to a new URL
+# This updates the 'home' alias to point to a new repository
 tw add home https://github.com/skypesky/leetcode-for-javascript
 ```
 
-## Removing an Alias
+## Remove an Alias
 
-You can remove an alias using the `rm` command.
-
-To remove a specific alias, provide its name as an argument:
+To delete an alias you no longer need, use the `tw rm` command followed by the alias name.
 
 ```shell
 tw rm home
 ```
 
-If you run `tw rm` without any arguments, the tool will launch an interactive menu, allowing you to select multiple aliases to delete at once.
-
-```shell
-tw rm
-# This will open an interactive prompt to select aliases for deletion
-```
+If you run `tw rm` without specifying an alias, the tool will launch an interactive mode, presenting a list of all your aliases and allowing you to select one or more to delete.
 
 ---
 
-Now that you understand the basic workflow, you can explore all the available commands and their options in the [Command Reference](./command-reference.md).
+You have now learned the core commands for managing aliases. For a comprehensive guide to all available commands and their options, please see the [Command Reference](./command-reference.md).

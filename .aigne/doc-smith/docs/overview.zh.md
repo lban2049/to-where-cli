@@ -1,57 +1,78 @@
 # 概述
 
-`to-where-cli` 是一个命令行工具，旨在通过将冗长、难记的 URL 替换为简单、直观的别名来简化您的工作流程。它允许您直接从终端快速打开项目仓库、文档和搜索页面，从而节省您的时间和精力。
+`to-where-cli` 是一个命令行实用工具，旨在简化从终端访问网页地址的过程。它通过一个直观的别名系统，让你能够使用简短、易记的命令来打开冗长、复杂或常用的 URL。这对于需要定期访问特定 GitHub 仓库、搜索包注册中心或使用各种搜索引擎的开发者尤其有用。
 
-您无需再手动浏览浏览器书签或输入复杂的网址，只需使用一个简短的命令即可立即到达您需要去的地方。
+你无需记住并输入 `https://github.com/skypesky/to-where-cli`，只需创建一个别名并运行 `tw to-where` 即可。
 
 ```d2
 direction: down
 
-"Developer": {
-  shape: person
-}
-
-"Terminal": {
+Terminal: {
   shape: rectangle
-  "tw home": "用户输入一个简短的别名"
+
+  User: {
+    shape: person
+  }
+
+  CLI-Input: {
+    label: "用户输入 `tw home`"
+    shape: rectangle
+  }
+
+  User -> CLI-Input
 }
 
-"to-where-cli": {
+to-where-cli: {
   shape: package
-  "Alias Lookup": "将 'home' 解析为其完整的 URL"
+  
+  Alias-Lookup: {
+    label: "1. 查找别名 'home'"
+    shape: rectangle
+  }
+  
+  URL-Retrieval: {
+    label: "2. 检索存储的 URL"
+    shape: rectangle
+  }
+  
+  Open-Command: {
+    label: "3. 发出系统 'open' 命令"
+    shape: rectangle
+  }
+
+  Alias-Lookup -> URL-Retrieval -> Open-Command
 }
 
-"Default Browser": {
+Browser: {
   shape: rectangle
-  "打开解析后的 URL"
+  label: "默认网络浏览器"
 }
 
-"Developer" -> "Terminal": "1. 执行命令"
-"Terminal" -> "to-where-cli": "2. 调用 CLI"
-"to-where-cli" -> "Default Browser": "3. 启动 URL"
+Terminal -> to-where-cli: "执行"
+to-where-cli -> Browser: "启动 URL"
 ```
 
 ## 主要特性
 
 <x-cards data-columns="3">
-  <x-card data-title="轻松管理别名" data-icon="lucide:bookmark-plus">
-    直接从命令行创建、列出、更新和删除任何 URL 的简单别名。
+  <x-card data-title="别名管理" data-icon="lucide:bookmark-plus">
+    为任意 URL 创建、列出、更新和移除短别名。使用简单的命令即可打开网站，无需输入或粘贴完整地址。
   </x-card>
-  <x-card data-title="快速 GitHub 导航" data-icon="lucide:github">
-    即时打开 git 仓库的特定页面，例如 issues、pull requests 或项目主页。
+  <x-card data-title="Git 仓库快捷方式" data-icon="lucide:git-branch">
+    无需完整 URL，即可直接跳转到 Git 仓库的特定页面，如 issues、pull requests 或项目主页。
   </x-card>
-  <x-card data-title="集成搜索快捷方式" data-icon="lucide:search">
-    无需先打开浏览器，即可直接在 npm、GitHub、Google、Bing 和 Baidu 上执行搜索。
+  <x-card data-title="直接网页搜索" data-icon="lucide:search">
+    直接从命令行在 Google、Bing、百度、npm 和 GitHub 等常用网站上进行搜索，并在浏览器中打开搜索结果页面。
   </x-card>
 </x-cards>
 
 ## 支持的平台
 
-该 CLI 目前在以下操作系统上得到支持和测试：
+该工具目前支持以下操作系统：
 
 - macOS
 - Windows
 
-## 后续步骤
+---
 
-准备好开始了吗？请前往 [安装](./getting-started-installation.md) 指南，在您的系统上设置 `to-where-cli` 并创建您的第一个别名。
+准备好简化你的工作流程了吗？请前往 [入门指南](./getting-started.md) 安装此命令行工具并创建你的第一个别名。

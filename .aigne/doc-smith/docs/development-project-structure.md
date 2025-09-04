@@ -1,55 +1,54 @@
 # Project Structure
 
-This guide provides an overview of the `to-where-cli` source code layout. Understanding the structure will help you navigate the codebase, make contributions, and understand how different components interact.
+This document provides an overview of the `to-where-cli` source code layout. Understanding the structure is key for developers looking to contribute to the project or understand its internal workings.
 
-The project is organized to separate concerns, making it easier to maintain and extend.
+The project follows a modular structure, separating concerns into distinct directories for the command-line interface, core business logic, data protocols, and metadata definitions.
 
-## High-Level Overview
+### High-Level Overview
 
-The following diagram illustrates the main components of the project and their relationships.
+The following diagram illustrates the main directories within the `src` folder and their primary relationships.
 
 ```d2
 direction: down
 
-"CLI Entry Point": {
-  label: "src/cli"
-  shape: package
+src-cli: {
+  label: "src/cli\n(Entry Point)"
+  shape: rectangle
 }
 
-"Core Logic": {
-  label: "src/classes"
-  shape: package
+src-classes: {
+  label: "src/classes\n(Core Logic & Implementations)"
+  shape: rectangle
 }
 
-"Protocols": {
-  label: "src/protocol (Interfaces)"
-  shape: package
+src-protocol: {
+  label: "src/protocol\n(Data Contracts / Interfaces)"
+  shape: rectangle
 }
 
-"Meta": {
-  label: "src/meta (Data Structures)"
-  shape: package
+src-meta: {
+  label: "src/meta\n(Data Structures)"
+  shape: rectangle
 }
 
-"CLI Entry Point" -> "Core Logic": "Initializes and runs commands"
-"Core Logic" -> "Protocols": "Implements contracts"
-"Core Logic" -> "Meta": "Uses shared types"
-
+src-cli -> src-classes: "Initializes Program"
+src-classes -> src-protocol: "Implements Protocols"
+src-protocol -> src-meta: "Uses Data Structures"
 ```
 
-## Key Directories and Files
+### Directory Breakdown
 
-Here is a breakdown of the most important directories and their roles within the project.
+Below is a detailed explanation of each key directory and its purpose.
 
-| Path            | Description                                                                                                                                                                     |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/`          | The root directory for all TypeScript source code.                                                                                                                              |
-| `src/cli/`      | Contains the executable entry point for the command-line interface. The `index.ts` file is responsible for setting up the command parser and executing the program.                     |
-| `src/classes/`  | This directory holds the core logic of the application. It contains classes that handle command implementation, configuration management (`SimpleConfig`), and worker processes (`SimpleWorker`). |
-| `src/protocol/` | Defines the TypeScript interfaces that serve as contracts for different modules. For example, `ConfigProtocol` and `WorkerProtocol` specify the required methods for any class that handles configuration or worker tasks. |
-| `src/meta/`     | Contains shared data structures and type definitions, such as `Point` and `Config`. These types are used consistently across the application to ensure data integrity.                |
-| `src/index.ts`  | The main entry point for the `src` module, which aggregates and exports the necessary classes and types for external use or for bundling.                                             |
+| Directory      | Description                                                                                                                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/cli`      | This is the executable entry point for the CLI. The `index.ts` file is responsible for initializing and parsing the commands defined in the `classes` directory.                                                                                             |
+| `src/classes`  | Contains the core application logic. This directory holds the concrete implementations for command creation (`create-program`), configuration handling (`simple-config`), and alias operations (`simple-worker`).                                                  |
+| `src/protocol` | Defines the TypeScript interfaces that act as contracts for the core components. For example, `ConfigProtocol` specifies all the methods required for managing configuration data, and `WorkerProtocol` defines the methods for alias-related actions. This separation allows for easier testing and maintenance. |
+| `src/meta`     | Holds the definitions for the primary data structures used throughout the application, such as `Point` (representing an alias) and `Config`. These files ensure data consistency across different modules.                                                 |
 
----
+By organizing the code this way, the CLI's user-facing parts are decoupled from the underlying business logic and data management, making the codebase cleaner and more scalable.
 
-This structure promotes modularity and clear separation of concerns. With this understanding of the project's layout, you can more easily locate relevant code. To learn about the development workflows, proceed to the [Available Scripts](./development-scripts.md) guide.
+### Next Steps
+
+Now that you have an understanding of the project's layout, you can learn how to build, test, and run the application by reading the [Available Scripts](./development-scripts.md) documentation.

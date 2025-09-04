@@ -1,33 +1,36 @@
 # Installation
 
-`to-where-cli` is distributed as a Node.js package and can be installed using npm (Node Package Manager). Before proceeding, ensure you have Node.js and npm installed on your system.
+To get started with `to-where-cli`, you need to install it globally on your system using npm. A global installation makes the `tw` command accessible from any directory in your terminal.
 
-## Prerequisites
+### Prerequisites
 
-- **Operating System**: macOS or Windows.
+Before you proceed, make sure you have [Node.js](https://nodejs.org/) and npm (Node Package Manager) installed on your system. 
 
-## Global Installation
+`to-where-cli` currently supports the following operating systems:
 
-To make the `tw` command accessible from anywhere in your terminal, it is recommended to install the package globally. The `-g` flag in the command handles this.
+- macOS
+- Windows
 
-Open your terminal and execute the following command:
+### Install Command
+
+Open your terminal and run the following command to install the package:
 
 ```shell
 npm install -g to-where-cli
 ```
 
-## Verify the Installation
+This command fetches the latest version of `to-where-cli` from the npm registry and installs it globally.
 
-Once the installation process is complete, you can verify that `to-where-cli` was installed correctly by running its help command. This command lists all available options and confirms that the CLI is properly linked in your system's path.
+### Verify Installation
+
+Once the installation is complete, you can verify that it was successful and the `tw` command is available by checking its help information:
 
 ```shell
 tw -h
 ```
 
-If the installation was successful, you will see the help output detailing the command's usage and options.
+If the installation was successful, you will see a list of available commands and options.
 
 ---
 
-With the installation complete, you are ready to start using aliases to manage your URLs. The next section will guide you through the fundamental commands.
-
-➡️ **Next: [Basic Usage](./getting-started-basic-usage.md)**
+Now that you have the CLI installed, you can learn how to use it by following the [Basic Usage](./getting-started-basic-usage.md) guide.

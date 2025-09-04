@@ -1,93 +1,155 @@
 # Git Command
 
-The `tw git` command provides a convenient way to quickly open various pages of your project's git repository (e.g., GitHub, GitLab) directly from your command line. It automatically detects your remote repository URL and navigates to the specified page in your default browser.
+The `tw git` command provides a convenient way to quickly open your project's remote repository pages directly from your terminal. It automatically detects your remote Git URL and opens the relevant page in your default web browser. The default subcommand is `open`, so `tw git` is an alias for `tw git open`.
+
+This command functions by reading the remote origin URL from your local Git configuration. It then constructs the appropriate URL for various repository pages—such as issues, pull requests, or specific files—based on the provided options. If no options are specified, it defaults to opening the main page for the current branch.
 
 ## Usage
 
-To use the command, run it from within a directory that is a git repository.
-
 ```bash
 tw git [options]
-# or explicitly
+# or
 tw git open [options]
 ```
 
-If no options are provided, the command defaults to opening the main page of the current branch.
+## Workflow
+
+The following diagram illustrates how the `tw git` command processes a request and opens the corresponding repository page.
+
+```d2
+direction: down
+
+Terminal: {
+  shape: rectangle
+  User: {
+    shape: person
+  }
+  CLI: {
+    label: "tw git --issue"
+  }
+  User -> CLI: "Executes command"
+}
+
+"to-where-cli": {
+  shape: package
+  grid-columns: 1
+
+  "Git-Command-Parser": {
+    label: "Git Command Parser"
+    shape: rectangle
+  }
+
+  "Git-Util": {
+    label: "Git Remote URL Util"
+    shape: rectangle
+  }
+
+  "URL-Builder": {
+    label: "URL Builder"
+    shape: rectangle
+  }
+
+  "System-Open": {
+    label: "OS Open Command"
+    shape: rectangle
+  }
+
+  "Git-Command-Parser" -> "Git-Util": "Requests remote URL"
+  "Git-Util" -> "Git-Command-Parser": "Returns base URL"
+  "Git-Command-Parser" -> "URL-Builder": "Provides base URL & option"
+  "URL-Builder" -> "System-Open": "Passes final URL"
+}
+
+"Local-Filesystem": {
+  label: "Local Filesystem"
+  shape: cylinder
+  "git-config": {
+    label: ".git/config"
+  }
+}
+
+Browser: {
+  shape: rectangle
+  "GitHub-Issues-Page": {
+    label: "GitHub Issues Page"
+  }
+}
+
+Terminal -> "to-where-cli"."Git-Command-Parser"
+"to-where-cli"."Git-Util" -> "Local-Filesystem": "Reads config"
+"to-where-cli"."System-Open" -> Browser: "Opens URL"
+```
 
 ## Options
 
-The `git` command supports a variety of options to navigate to different parts of a repository.
-
 | Option | Alias | Description |
 |---|---|---|
-| `--actions` | `-a` | Opens the repository's Actions (CI/CD) page. |
-| `--author` | | Opens the profile page of the last commit's author. |
-| `--branch [branch]` | `-b` | Opens a specific branch page. Defaults to the current branch if no name is provided. |
-| `--commit [hash]` | `-c` | Opens a specific commit page. Defaults to the latest commit if no hash is provided. |
-| `--committer` | | Opens the profile page of the last commit's committer. |
-| `--file <filePath>` | `-f` | Opens the page for a specific file on the current branch. |
-| `--find` | | Opens the file finder/search page for the current branch. |
-| `--first-commit` | | Opens the very first commit page of the repository. |
-| `--issue` | `-i` | Opens the issues list page. |
-| `--main` | `-m` | Opens the main branch page of the repository. |
-| `--pull-request` | `-p` | Opens the pull request list page. |
-| `--pull [branch]` | | Opens the page to create a new pull request, defaulting to the current branch. |
-| `--release` | `-r` | Opens the releases page. |
-| `--settings` | `-s` | Opens the repository settings page. |
-| `--star` | | Opens the stargazers page. |
+| `--actions` | `-a` | Open the repository's Actions page. |
+| `--author` | | Open the profile page of the last commit's author. |
+| `--branch [branch]` | `-b` | Open a specific branch page. Defaults to the current branch if no branch name is provided. |
+| `--commit [hash]` | `-c` | Open a specific commit page. Defaults to the latest commit if no hash is provided. |
+| `--committer` | | Open the profile page of the last commit's committer. |
+| `--file <filePath>` | `-f` | Open the page for a specific file in the repository. |
+| `--find` | | Open the file search page for the current branch. |
+| `--first-commit` | | Open the very first commit page of the repository. |
+| `--issue` | `-i` | Open the issues list page. |
+| `--main` | `-m` | Open the main repository page (root). |
+| `--pull-request` | `-p` | Open the pull requests list page. |
+| `--pull [branch]` | | Open the page to create a new pull request. The source branch defaults to the current branch. |
+| `--release` | `-r` | Open the releases page. |
+| `--settings` | `-s` | Open the repository settings page. |
+| `--star` | | Open the stargazers page. |
 
 ## Examples
 
-Here are some practical examples of how to use the `tw git` command.
+### Open the Current Branch Page
 
-### Open the Repository Homepage
-
-To open the repository's main page for the current branch, simply run the command without any options.
+If you are on a branch named `feature/new-ui`, running the command without any options will open the page for that branch.
 
 ```bash
 tw git
 ```
 
-### View Issues and Pull Requests
+### Open the Issues List
 
-Quickly navigate to the issues or pull requests list.
+To quickly navigate to the issues page for the repository.
 
 ```bash
-# Open the issues list
 tw git --issue
-
-# Open the pull requests list
-tw git -p
+# or using the alias
+tw git -i
 ```
 
 ### Create a New Pull Request
 
-To open the 'New Pull Request' page for your current branch, use the `--pull` option.
+This command opens the 'New Pull Request' page in your browser, pre-populating the source branch with your current branch.
 
 ```bash
 tw git --pull
 ```
 
-### Inspect Branches and Commits
-
-View a specific branch or commit page.
+To specify a different source branch for the pull request:
 
 ```bash
-# Open the page for the current branch
-tw git -b
-
-# Open a specific commit by its hash
-tw git -c a1b2c3d4
+tw git --pull my-feature-branch
 ```
 
-### View a Specific File
+### Open a Specific File
 
-Open a specific file in the repository on your current branch.
+To view a specific file in the repository on its default branch.
 
 ```bash
 tw git -f "src/cli/git/open.ts"
 ```
 
+### View a Specific Commit
+
+Provide a commit hash to open its details page directly.
+
+```bash
+tw git -c a1b2c3d4e5f6
+```
+
 ---
 
-Now that you are familiar with the `git` command, you may want to explore other ways to interact with online services. For more information, see the [Search Commands](./command-reference-search.md) documentation.
+The `git` command streamlines your development workflow by reducing the need to manually navigate repository websites. For other direct actions from your terminal, see the [Search Commands](./command-reference-search.md).
