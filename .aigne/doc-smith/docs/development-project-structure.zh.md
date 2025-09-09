@@ -1,54 +1,83 @@
 # 项目结构
 
-本文档概述了 `to-where-cli` 源代码的布局。对于希望为项目做出贡献或了解其内部工作原理的开发者来说，理解该结构至关重要。
+欢迎阅读 `to-where-cli` 开发指南！对于任何希望参与贡献或仅仅想了解其工作原理的人来说，清晰地理解项目结构至关重要。本文档对源代码布局进行了高层次的概述，解释了每个关键目录和文件的用途。
 
-该项目遵循模块化结构，将命令行界面、核心业务逻辑、数据协议和元数据定义等不同职责的内容分离到独立的目录中。
+该项目通过分离关注点进行组织，使代码库模块化且更易于维护。核心逻辑分为数据结构 (`meta`)、合约 (`protocol`) 及其具体实现 (`classes`)，然后由命令行界面 (`cli`) 使用。
 
-### 宏观概览
+## 高层次概述
 
-下图展示了 `src` 文件夹内的主要目录及其主要关系。
+下图展示了 `src` 文件夹内的主要目录及其依赖关系。流程通常从命令行入口点向下延伸至核心数据定义。
 
 ```d2
 direction: down
 
-src-cli: {
-  label: "src/cli\n(入口点)"
+cli: {
+  label: "cli\n（入口点）"
   shape: rectangle
 }
 
-src-classes: {
-  label: "src/classes\n(核心逻辑与实现)"
+classes: {
+  label: "classes\n（实现）"
   shape: rectangle
 }
 
-src-protocol: {
-  label: "src/protocol\n(数据契约/接口)"
+protocol: {
+  label: "protocol\n（接口）"
   shape: rectangle
 }
 
-src-meta: {
-  label: "src/meta\n(数据结构)"
+meta: {
+  label: "meta\n（数据结构）"
   shape: rectangle
 }
 
-src-cli -> src-classes: "初始化程序"
-src-classes -> src-protocol: "实现协议"
-src-protocol -> src-meta: "使用数据结构"
+cli -> classes: "使用"
+classes -> protocol: "实现"
+protocol -> meta: "使用"
+classes -> meta: "使用"
 ```
 
-### 目录详解
+## 目录详解
 
-以下是每个关键目录及其用途的详细说明。
+以下是 `src` 文件夹内主要目录的详细说明。
 
-| Directory      | Description                                                                                                                                                                                                                                                        |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/cli`      | 这是 CLI 的可执行入口点。`index.ts` 文件负责初始化和解析在 `classes` 目录中定义的命令。                                                                                             | 
-| `src/classes`  | 包含核心应用程序逻辑。该目录存放了用于命令创建 (`create-program`)、配置处理 (`simple-config`) 和别名操作 (`simple-worker`) 的具体实现。                                                  |
-| `src/protocol` | 定义作为核心组件契约的 TypeScript 接口。例如，`ConfigProtocol` 指定了管理配置数据所需的所有方法，而 `WorkerProtocol` 定义了与别名相关的操作方法。这种分离使得测试和维护更加容易。 |
-| `src/meta`     | 存放了整个应用程序中使用的主要数据结构的定义，例如 `Point`（表示一个别名）和 `Config`。这些文件确保了不同模块之间的数据一致性。                                                 |
+### `src/cli`
 
-通过以这种方式组织代码，CLI 的面向用户的部分与底层的业务逻辑和数据管理解耦，使得代码库更清晰、更具可扩展性。
+这是命令行界面的主入口点。它负责解析命令行参数并执行相应的操作。
 
-### 后续步骤
+| 文件 | 描述 |
+|---|---|
+| `index.ts` | 启动并运行 CLI 程序的可执行脚本。它使用 `classes` 目录中的 `createProgram` 工厂来初始化命令结构。 |
 
-了解项目布局后，您可以通过阅读 [Available Scripts](./development-scripts.md) 文档来学习如何构建、测试和运行该应用程序。
+### `src/classes`
+
+该目录包含应用程序核心逻辑和协议的具体实现。这些类处理管理别名和配置的实际工作。
+
+| 文件 | 描述 |
+|---|---|
+| `create-program.ts` | 一个工厂函数，负责设置命令结构，定义所有可用命令及其选项和参数。 |
+| `simple-worker.ts` | 实现 `WorkerProtocol`，用于处理核心业务逻辑，如添加、删除和列出别名。 |
+| `simple-config.ts` | 实现 `ConfigProtocol`，用于与配置文件进行所有交互，例如读取、写入和更新别名数据。 |
+| `open.ts` | 包含用于打开与给定别名关联的 URL 或路径的逻辑。 |
+
+### `src/protocol`
+
+该目录定义了系统不同部分的合约或接口。使用协议可以实现组件之间的松耦合，并使代码库更易于测试和扩展。
+
+| 文件 | 描述 |
+|---|---|
+| `worker.protocol.ts` | 定义 `WorkerProtocol` 接口，该接口指定了所有核心别名操作（`open`、`add`、`delete`、`list`、`clean`）的方法。 |
+| `config.protocol.ts` | 定义 `ConfigProtocol` 接口，用于与配置存储进行交互，包括 `get`、`set`、`add` 和 `find` 等方法。 |
+
+### `src/meta`
+
+该目录包含整个应用程序中使用的核心数据结构和 TypeScript 类型定义。这些文件确保了不同模块之间的数据一致性。
+
+| 文件 | 描述 |
+|---|---|
+| `point.meta.ts` | 定义 `Point` 类型，它代表一个包含别名及其路径的单一别名记录。 |
+| `config.meta.ts` | 定义 `Config` 类型，它代表主配置文件的整体结构。 |
+
+---
+
+现在您已经了解了项目的布局，下一步是学习用于构建、测试和运行应用程序的开发脚本。请继续阅读 [可用脚本](./development-scripts.md) 部分。

@@ -1,147 +1,75 @@
 # 搜索命令
 
-`to-where-cli` 提供了一系列子命令，可直接在终端上快速搜索热门开发者平台。这些命令会在默认网页浏览器中打开相应的搜索结果页面，从而简化您的工作流程。
+`to-where-cli` 包含一组便捷的子命令，允许你直接从命令行界面在各种开发者平台和搜索引擎上执行搜索。此功能无需切换到浏览器进行常见查找，从而简化了你的工作流程。
 
-## npm
+## NPM 搜索
 
-在 npm 注册表中搜索软件包。该命令包含多个选项，可直接导航至 npm 软件包的特定页面。
+`tw npm` 命令是与 npm 注册表交互的强大工具。你可以用它来搜索包，或直接导航到包页面的特定选项卡，例如其版本、依赖项或源代码。
 
-### 用法
+### 基本用法
 
-```bash
-tw npm [keyword] [options]
+要执行常规搜索，只需提供一个关键字。
+
+```shell
+# 搜索与 "react" 相关的包
+tw npm react
+
+# 如果未提供关键字，则会打开 npm 主页
+tw npm
 ```
-
-### 参数
-
-| 参数  | 描述                                                 |
-| :-------- | :---------------------------------------------------------- |
-| `keyword` | 可选。软件包名称或搜索词。如果省略，将打开 npm 主页。 |
 
 ### 选项
 
-| 简写 | 全称           | 描述                                                 |
-| :---- | :------------- | :---------------------------------------------------------- |
-| `-c`  | `--code`         | 在 npm 上打开软件包的代码选项卡。                        |
-| `-d`  | `--dependencies` | 打开软件包的依赖项选项卡。                       |
-| `-v`  | `--version`      | 打开软件包的版本选项卡。                           |
-| `-r`  | `--run-kit`      | 在 RunKit 上打开软件包以进行交互式测试。        |
+`npm` 子命令附带了几个选项，可将你带到指定包的特定页面。
 
-### 示例
+| 选项 | 别名 | 描述 | 示例 |
+|---|---|---|---|
+| `--code` | `-c` | 在 npm 上打开包的代码页面。 | `tw npm react -c` |
+| `--dependencies` | `-d` | 打开包的依赖项页面。 | `tw npm express -d` |
+| `--version` | `-v` | 打开包的版本页面。 | `tw npm lodash -v` |
+| `--run-kit` | `-r` | 在 RunKit 上打开包以进行交互式测试。 | `tw npm moment -r` |
 
-- **搜索与 'react' 相关的软件包：**
-  ```bash
-  tw npm react
-  ```
+## 通用搜索命令
 
-- **打开 npm 主页：**
-  ```bash
-  tw npm
-  ```
+除了专门的 `npm` 命令外，`to-where-cli` 还支持多个流行的搜索引擎。这些命令遵循简单一致的模式。
 
-- **查看 'lodash' 软件包的所有版本：**
-  ```bash
-  tw npm lodash -v
-  ```
+<x-cards data-columns="2">
+  <x-card data-title="GitHub 搜索" data-icon="lucide:github">
+    `github` 命令允许你直接在 GitHub 上搜索仓库、代码等。
+  </x-card>
+  <x-card data-title="Google 搜索" data-icon="lucide:search">
+    `google` 命令会使用你指定的关键字在 Google 上启动新的搜索。
+  </x-card>
+  <x-card data-title="Bing 搜索" data-icon="lucide:search-code">
+    `bing` 命令会在 Bing 搜索引擎上执行搜索。
+  </x-card>
+  <x-card data-title="百度搜索" data-icon="lucide:search-check">
+    `baidu` 命令适用于偏好使用百度搜索引擎的用户。
+  </x-card>
+</x-cards>
 
-- **浏览 'express' 软件包的源代码：**
-  ```bash
-  tw npm express --code
-  ```
+### 用法示例
 
-- **使用 RunKit 直接在浏览器中试用 'commander'：**
-  ```bash
-  tw npm commander -r
-  ```
-
-## github
-
-在 GitHub 上执行搜索。
-
-### 用法
-
-```bash
-tw github [keyword]
+```shell GitHub Search icon=lucide:github
+# 在 GitHub 上搜索匹配 "to-where-cli" 的仓库
+tw github to-where-cli
 ```
 
-### 参数
-
-| 参数  | 描述                               |
-| :-------- | :---------------------------------------- |
-| `keyword` | 可选。要在 GitHub 上搜索的词语。 |
-
-### 示例
-
-- **搜索与 'to-where-cli' 相关的仓库或代码：**
-  ```bash
-  tw github to-where-cli
-  ```
-
-## google
-
-在 Google 上执行搜索。
-
-### 用法
-
-```bash
-tw google [keyword]
+```shell Google Search icon=lucide:search
+# 在 Google 上搜索 "commander.js examples"
+tw google "commander.js examples"
 ```
 
-### 参数
-
-| 参数  | 描述                               |
-| :-------- | :---------------------------------------- |
-| `keyword` | 可选。要在 Google 上搜索的词语。 |
-
-### 示例
-
-- **搜索 'how to use commander.js'：**
-  ```bash
-  tw google "how to use commander.js"
-  ```
-
-## bing
-
-在 Bing 上执行搜索。
-
-### 用法
-
-```bash
-tw bing [keyword]
+```shell Bing Search icon=lucide:search-code
+# 在 Bing 上搜索 "typescript best practices"
+tw bing "typescript best practices"
 ```
 
-### 参数
-
-| 参数  | 描述                             |
-| :-------- | :-------------------------------------- |
-| `keyword` | 可选。要在 Bing 上搜索的词语。 |
-
-### 示例
-
-- **搜索 'typescript best practices'：**
-  ```bash
-  tw bing "typescript best practices"
-  ```
-
-## baidu
-
-在百度上执行搜索。
-
-### 用法
-
-```bash
-tw baidu [keyword]
+```shell Baidu Search icon=lucide:search-check
+# 在百度上搜索 "Node.js 教程"
+tw baidu "Node.js 教程"
 ```
 
-### 参数
+---
 
-| 参数  | 描述                              |
-| :-------- | :--------------------------------------- |
-| `keyword` | 可选。要在百度上搜索的词语。 |
-
-### 示例
-
-- **搜索 'Node.js 教程'：**
-  ```bash
-  tw baidu "Node.js 教程"
-  ```
+这些搜索命令有助于将外部查找无缝集成到你的开发环境中。如果你对这些命令的构建方式感兴趣或想要做出贡献，请参阅我们的[开发指南](./development.md)。

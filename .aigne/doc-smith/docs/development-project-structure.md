@@ -1,54 +1,83 @@
 # Project Structure
 
-This document provides an overview of the `to-where-cli` source code layout. Understanding the structure is key for developers looking to contribute to the project or understand its internal workings.
+Welcome to the `to-where-cli` development guide! A clear understanding of the project's structure is crucial for anyone looking to contribute or simply understand how it works. This document provides a high-level overview of the source code layout, explaining the purpose of each key directory and file.
 
-The project follows a modular structure, separating concerns into distinct directories for the command-line interface, core business logic, data protocols, and metadata definitions.
+The project is organized to separate concerns, making the codebase modular and easier to maintain. The core logic is divided into data structures (`meta`), contracts (`protocol`), and their concrete implementations (`classes`), which are then consumed by the command-line interface (`cli`).
 
-### High-Level Overview
+## High-Level Overview
 
-The following diagram illustrates the main directories within the `src` folder and their primary relationships.
+The following diagram illustrates the main directories within the `src` folder and their dependencies. The flow generally moves from the command-line entry point down to the core data definitions.
 
 ```d2
 direction: down
 
-src-cli: {
-  label: "src/cli\n(Entry Point)"
+cli: {
+  label: "cli\n(Entry Point)"
   shape: rectangle
 }
 
-src-classes: {
-  label: "src/classes\n(Core Logic & Implementations)"
+classes: {
+  label: "classes\n(Implementations)"
   shape: rectangle
 }
 
-src-protocol: {
-  label: "src/protocol\n(Data Contracts / Interfaces)"
+protocol: {
+  label: "protocol\n(Interfaces)"
   shape: rectangle
 }
 
-src-meta: {
-  label: "src/meta\n(Data Structures)"
+meta: {
+  label: "meta\n(Data Structures)"
   shape: rectangle
 }
 
-src-cli -> src-classes: "Initializes Program"
-src-classes -> src-protocol: "Implements Protocols"
-src-protocol -> src-meta: "Uses Data Structures"
+cli -> classes: "Uses"
+classes -> protocol: "Implements"
+protocol -> meta: "Uses"
+classes -> meta: "Uses"
 ```
 
-### Directory Breakdown
+## Directory Breakdown
 
-Below is a detailed explanation of each key directory and its purpose.
+Here is a detailed breakdown of the primary directories within the `src` folder.
 
-| Directory      | Description                                                                                                                                                                                                                                                        |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/cli`      | This is the executable entry point for the CLI. The `index.ts` file is responsible for initializing and parsing the commands defined in the `classes` directory.                                                                                             |
-| `src/classes`  | Contains the core application logic. This directory holds the concrete implementations for command creation (`create-program`), configuration handling (`simple-config`), and alias operations (`simple-worker`).                                                  |
-| `src/protocol` | Defines the TypeScript interfaces that act as contracts for the core components. For example, `ConfigProtocol` specifies all the methods required for managing configuration data, and `WorkerProtocol` defines the methods for alias-related actions. This separation allows for easier testing and maintenance. |
-| `src/meta`     | Holds the definitions for the primary data structures used throughout the application, such as `Point` (representing an alias) and `Config`. These files ensure data consistency across different modules.                                                 |
+### `src/cli`
 
-By organizing the code this way, the CLI's user-facing parts are decoupled from the underlying business logic and data management, making the codebase cleaner and more scalable.
+This is the main entry point for the command-line interface. It is responsible for parsing command-line arguments and executing the corresponding actions.
 
-### Next Steps
+| File | Description |
+|---|---|
+| `index.ts` | The executable script that bootstraps and runs the CLI program. It initializes the command structure using the `createProgram` factory from the `classes` directory. |
 
-Now that you have an understanding of the project's layout, you can learn how to build, test, and run the application by reading the [Available Scripts](./development-scripts.md) documentation.
+### `src/classes`
+
+This directory contains the concrete implementations of the application's core logic and protocols. These classes handle the actual work of managing aliases and configuration.
+
+| File | Description |
+|---|---|
+| `create-program.ts` | A factory function responsible for setting up the command structure, defining all available commands, their options, and arguments. |
+| `simple-worker.ts` | Implements the `WorkerProtocol` to handle core business logic like adding, removing, and listing aliases. |
+| `simple-config.ts` | Implements the `ConfigProtocol` for all interactions with the configuration file, such as reading, writing, and updating alias data. |
+| `open.ts` | Contains the logic for opening a URL or path associated with a given alias. |
+
+### `src/protocol`
+
+This directory defines the contracts or interfaces for different parts of the system. Using protocols allows for loose coupling between components and makes the codebase easier to test and extend.
+
+| File | Description |
+|---|---|
+| `worker.protocol.ts` | Defines the `WorkerProtocol` interface, which specifies the methods for all core alias operations (`open`, `add`, `delete`, `list`, `clean`). |
+| `config.protocol.ts` | Defines the `ConfigProtocol` interface for interacting with the configuration store, including methods like `get`, `set`, `add`, and `find`. |
+
+### `src/meta`
+
+This directory contains the core data structures and TypeScript type definitions used throughout the application. These files ensure data consistency across different modules.
+
+| File | Description |
+|---|---|
+| `point.meta.ts` | Defines the `Point` type, which represents a single alias record containing its alias and path. |
+| `config.meta.ts` | Defines the `Config` type, which represents the overall structure of the main configuration file. |
+
+---
+
+Now that you have an understanding of the project's layout, the next step is to learn about the development scripts used to build, test, and run the application. Please proceed to the [Available Scripts](./development-scripts.md) section.

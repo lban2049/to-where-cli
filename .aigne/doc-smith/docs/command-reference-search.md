@@ -1,147 +1,75 @@
 # Search Commands
 
-The `to-where-cli` provides a series of subcommands to quickly perform searches on popular developer platforms directly from your terminal. These commands open your default web browser to the corresponding search results page, streamlining your workflow.
+The `to-where-cli` includes a set of convenient subcommands that allow you to perform searches on various developer platforms and search engines directly from your command-line interface. This feature streamlines your workflow by eliminating the need to switch to a browser for common lookups.
 
-## npm
+## NPM Search
 
-Searches for packages on the npm registry. This command includes several options to navigate directly to specific pages of an npm package.
+The `tw npm` command is a powerful tool for interacting with the npm registry. You can use it to search for packages or navigate directly to specific tabs on a package's page, such as its versions, dependencies, or source code.
 
-### Usage
+### Basic Usage
 
-```bash
-tw npm [keyword] [options]
+To perform a general search, simply provide a keyword.
+
+```shell
+# Search for packages related to "react"
+tw npm react
+
+# If no keyword is provided, it opens the npm homepage
+tw npm
 ```
-
-### Arguments
-
-| Argument  | Description                                                 |
-| :-------- | :---------------------------------------------------------- |
-| `keyword` | Optional. The package name or search term. If omitted, it opens the npm homepage. |
 
 ### Options
 
-| Short | Long           | Description                                                 |
-| :---- | :------------- | :---------------------------------------------------------- |
-| `-c`  | `--code`         | Opens the package's code tab on npm.                        |
-| `-d`  | `--dependencies` | Opens the package's dependencies tab.                       |
-| `-v`  | `--version`      | Opens the package's versions tab.                           |
-| `-r`  | `--run-kit`      | Opens the package on RunKit for interactive testing.        |
+The `npm` subcommand comes with several options to take you to specific pages for a given package.
 
-### Examples
+| Option | Alias | Description | Example |
+|---|---|---|---|
+| `--code` | `-c` | Opens the package's code page on npm. | `tw npm react -c` |
+| `--dependencies` | `-d` | Opens the package's dependencies page. | `tw npm express -d` |
+| `--version` | `-v` | Opens the package's versions page. | `tw npm lodash -v` |
+| `--run-kit` | `-r` | Opens the package on RunKit for interactive testing. | `tw npm moment -r` |
 
-- **Search for packages related to 'react':**
-  ```bash
-  tw npm react
-  ```
+## Generic Search Commands
 
-- **Open the npm homepage:**
-  ```bash
-  tw npm
-  ```
+Beyond the specialized `npm` command, `to-where-cli` supports several popular search engines. These commands follow a simple and consistent pattern.
 
-- **View all versions of the 'lodash' package:**
-  ```bash
-  tw npm lodash -v
-  ```
+<x-cards data-columns="2">
+  <x-card data-title="GitHub Search" data-icon="lucide:github">
+    The `github` command allows you to search for repositories, code, and more directly on GitHub.
+  </x-card>
+  <x-card data-title="Google Search" data-icon="lucide:search">
+    The `google` command launches a new search on Google with your specified keywords.
+  </x-card>
+  <x-card data-title="Bing Search" data-icon="lucide:search-code">
+    The `bing` command performs a search on the Bing search engine.
+  </x-card>
+  <x-card data-title="Baidu Search" data-icon="lucide:search-check">
+    The `baidu` command is available for users who prefer to use the Baidu search engine.
+  </x-card>
+</x-cards>
 
-- **Explore the source code of the 'express' package:**
-  ```bash
-  tw npm express --code
-  ```
+### Usage Examples
 
-- **Try 'commander' directly in your browser using RunKit:**
-  ```bash
-  tw npm commander -r
-  ```
-
-## github
-
-Performs a search on GitHub.
-
-### Usage
-
-```bash
-tw github [keyword]
+```shell GitHub Search icon=lucide:github
+# Search GitHub for repositories matching "to-where-cli"
+tw github to-where-cli
 ```
 
-### Arguments
-
-| Argument  | Description                               |
-| :-------- | :---------------------------------------- |
-| `keyword` | Optional. The term to search for on GitHub. |
-
-### Example
-
-- **Search for repositories or code related to 'to-where-cli':**
-  ```bash
-  tw github to-where-cli
-  ```
-
-## google
-
-Performs a search on Google.
-
-### Usage
-
-```bash
-tw google [keyword]
+```shell Google Search icon=lucide:search
+# Search Google for "commander.js examples"
+tw google "commander.js examples"
 ```
 
-### Arguments
-
-| Argument  | Description                               |
-| :-------- | :---------------------------------------- |
-| `keyword` | Optional. The term to search for on Google. |
-
-### Example
-
-- **Search for 'how to use commander.js':**
-  ```bash
-  tw google "how to use commander.js"
-  ```
-
-## bing
-
-Performs a search on Bing.
-
-### Usage
-
-```bash
-tw bing [keyword]
+```shell Bing Search icon=lucide:search-code
+# Search Bing for "typescript best practices"
+tw bing "typescript best practices"
 ```
 
-### Arguments
-
-| Argument  | Description                             |
-| :-------- | :-------------------------------------- |
-| `keyword` | Optional. The term to search for on Bing. |
-
-### Example
-
-- **Search for 'typescript best practices':**
-  ```bash
-  tw bing "typescript best practices"
-  ```
-
-## baidu
-
-Performs a search on Baidu.
-
-### Usage
-
-```bash
-tw baidu [keyword]
+```shell Baidu Search icon=lucide:search-check
+# Search Baidu for "Node.js 教程"
+tw baidu "Node.js 教程"
 ```
 
-### Arguments
+---
 
-| Argument  | Description                              |
-| :-------- | :--------------------------------------- |
-| `keyword` | Optional. The term to search for on Baidu. |
-
-### Example
-
-- **Search for 'Node.js 教程' (Node.js tutorial):**
-  ```bash
-  tw baidu "Node.js 教程"
-  ```
+These search commands help integrate external lookups seamlessly into your development environment. If you're interested in how these commands are built or want to contribute, head over to our [Development Guide](./development.md).

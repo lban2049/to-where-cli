@@ -1,69 +1,69 @@
 # Changelog
 
-This is a detailed log of all changes, new features, and bug fixes for each version of `to-where-cli`.
+This page provides a detailed history of all changes, new features, and bug fixes for each version of `to-where-cli`.
 
-## 0.0.23 (June 06, 2024)
+## 0.0.23 - 2024-06-06
 
-- **chore**: remove useless codes.
+- **Chore:** Removed useless codes.
 
-## 0.0.22 (June 06, 2024)
+## 0.0.22 - 2024-06-06
 
-- **feat**: add run kit options to npm command.
+- **Feat:** Added run kit options to the npm command.
 
-## 0.0.21 (September 13, 2023)
+## 0.0.21 - 2023-09-13
 
-- **feat**: extend npm command (`tw npm -c/-d/-v`).
+- **Feat:** Extended the npm command (`tw npm -c/-d/-v`).
 
-## 0.0.20 (July 11, 2023)
+## 0.0.20 - 2023-07-11
 
-- **feat**: supports opening a specified branch.
-- **feat**: support for opening the first commit.
+- **Feat:** Supports opening a specified branch.
+- **Feat:** Support for opening the first commit.
 
-## 0.0.19 (May 21, 2023)
+## 0.0.19 - 2023-05-21
 
-- **feat**: supports opening a specified branch.
-- **feat**: support for opening the first commit.
-- **docs**: update README.md, update gitbook site documentation.
+- **Feat:** Supports opening a specified branch.
+- **Feat:** Support for opening the first commit.
+- **Docs:** Updated `README.md` and GitBook site documentation.
 
-## 0.0.18 (May 14, 2023)
+## 0.0.18 - 2023-05-14
 
-- **feat**: perfecting the test.
+- **Feat:** Perfected the test suite.
 
-## 0.0.17 (February 26, 2023)
+## 0.0.17 - 2023-02-26
 
-- **feat**: support for opening the star screen of a project.
-- **feat**: support remove multiple alias when use `tw rm`.
+- **Feat:** Added support for opening the star screen of a project.
+- **Feat:** Added support for removing multiple aliases with `tw rm`.
 
-## 0.0.16 (February 10, 2023)
+## 0.0.16 - 2023-02-10
 
-- **feat**: support on npm, baidu, google, bing, github page search.
-- **feat**: the `tw list` subcommand supports the use of the `tw ls` shorthand.
+- **Feat:** Added support for searching on npm, Baidu, Google, Bing, and GitHub pages.
+- **Feat:** The `tw list` subcommand now supports the `tw ls` shorthand.
 
-## 0.0.15 (February 06, 2023)
+## 0.0.15 - 2023-02-06
 
-- **feat**: `git` subcommand work with git ssh-url.
+- **Feat:** The `git` subcommand now works with git SSH URLs.
 
-## 0.0.14 (February 03, 2023)
+## 0.0.14 - 2023-02-03
 
-- **feat**: support using `tw git open --pull` to create pr.
+- **Feat:** Added support for creating pull requests using `tw git open --pull`.
 
-## 0.0.13 (January 28, 2023)
+## 0.0.13 - 2023-01-28
 
-- **feat**: support release of beta version of to-where-cli.
-- **fix**: windows installation error: to-where-cli@0.0.12 preinstall: npx only-allow pnpm.
-- **feat**: version check before release.
+- **Feat:** Added support for releasing beta versions.
+- **Fix:** Resolved a Windows installation error related to `npx only-allow pnpm`.
+- **Feat:** Implemented a version check before release.
 
-## 0.0.12 (January 27, 2023)
+## 0.0.12 - 2023-01-27
 
-- **fix**: README.md file error problem.
+- **Fix:** Corrected an error in the `README.md` file.
 
-## 0.0.11 (January 27, 2023)
+## 0.0.11 - 2023-01-27
 
-- **feat**: support to open the file with the specified path through `tw git open --file xxx`.
-- **feat**: support to open the commit with the specified hash through `tw git open -c xxx`.
+- **Feat:** Added support for opening a file with a specified path via `tw git open --file xxx`.
+- **Feat:** Added support for opening a commit with a specified hash via `tw git open -c xxx`.
 
-## 0.0.10 (January 27, 2023)
+## 0.0.10 - 2023-01-27
 
-- **feat**: windows system supported.
-- **feat**: support opening git branch page, issue list page, pr list page, etc.
-- **feat**: support statistics visits.
+- **Feat:** Added support for the Windows operating system.
+- **Feat:** Added support for opening git branch pages, issue list pages, and pull request list pages.
+- **Feat:** Added support for visit statistics.

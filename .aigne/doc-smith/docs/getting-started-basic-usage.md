@@ -1,53 +1,62 @@
 # Basic Usage
 
-Once `to-where-cli` is installed, you can immediately start managing your address aliases. This guide walks you through the fundamental workflow: adding a new alias, opening its associated address, listing your saved aliases, and removing them when they are no longer needed.
+Once you have `to-where-cli` installed, you can start managing your address aliases with a few simple commands. This guide will walk you through the core workflow: adding, opening, listing, updating, and removing aliases.
 
-## Add an Alias
+### Add an Alias
 
-To save a URL or a local file path with a memorable name, use the `tw add` command. The command follows the structure `tw add <alias> <address>`.
-
-For example, to create an alias named `home` for a GitHub profile URL:
+To save a new address, use the `tw add` command. You need to provide a short, memorable `alias` and the full `address` you want to save.
 
 ```shell
 tw add home https://github.com/skypesky
 ```
 
-If you omit the alias and address, the command will use the current working directory as the address and the directory's name as the alias.
+**Pro Tip:** If you run `tw add` without an address, it will use your current working directory. If you also omit the alias, it will use the directory's name as the alias.
 
-## Open an Address by Alias
+```shell
+# In folder /Users/dev/my-project
+tw add my-proj # Creates an alias 'my-proj' for the current directory
 
-To open the address linked to an alias, simply run `tw` followed by the alias name. This will open the URL or path in the appropriate default application (e.g., a web browser for URLs).
+# In folder /Users/dev/my-project
+tw add # Creates an alias 'my-project' for the current directory
+```
+
+### Open an Address by Alias
+
+To open a saved address in your default browser, simply type `tw` followed by the alias.
 
 ```shell
 tw home
 ```
 
-Executing this command will open `https://github.com/skypesky` in your default browser.
+This command will open `https://github.com/skypesky`.
 
-## List Your Aliases
+### List Your Aliases
 
-To view all your saved aliases and their corresponding addresses, use the `tw ls` command. The `list` command is an alias for `ls`.
+If you forget an alias, you can list all saved aliases and their corresponding addresses using the `tw ls` command (or its full-length version, `tw list`).
 
 ```shell
+# List all saved aliases
 tw ls
 ```
 
-If you want to check the address for a specific alias, you can pass the alias name as an argument:
+You can also check the address for a specific alias.
 
 ```shell
+# Show the address for the 'home' alias
 tw ls home
 ```
 
-## Update an Alias
+### Update an Alias
 
-To change the address associated with an existing alias, simply use the `tw add` command again with the same alias name. The new address will overwrite the previous one.
+To update the address associated with an existing alias, simply use the `tw add` command again with the same alias and the new address. This will overwrite the previous entry.
 
 ```shell
-# This updates the 'home' alias to point to a new repository
-tw add home https://github.com/skypesky/leetcode-for-javascript
+tw add home https://github.com/skypesky/to-where-cli
 ```
 
-## Remove an Alias
+If you want to be explicit about overwriting, you can use the `--force` or `-f` flag.
+
+### Remove an Alias
 
 To delete an alias you no longer need, use the `tw rm` command followed by the alias name.
 
@@ -55,8 +64,14 @@ To delete an alias you no longer need, use the `tw rm` command followed by the a
 tw rm home
 ```
 
-If you run `tw rm` without specifying an alias, the tool will launch an interactive mode, presenting a list of all your aliases and allowing you to select one or more to delete.
+If you run `tw rm` without specifying an alias, the tool will enter an interactive mode, allowing you to select multiple aliases to delete from a list of all your saved entries.
 
----
+### Get Help
 
-You have now learned the core commands for managing aliases. For a comprehensive guide to all available commands and their options, please see the [Command Reference](./command-reference.md).
+For a complete list of commands and options, you can always use the help flag.
+
+```shell
+tw -h
+```
+
+Now that you've mastered the basics, you can explore all the available commands and their options in the [Command Reference](./command-reference.md).

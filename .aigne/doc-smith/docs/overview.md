@@ -1,78 +1,32 @@
 # Overview
 
-`to-where-cli` is a command-line utility designed to simplify accessing web addresses from your terminal. It uses a straightforward alias system to let you open long, complex, or frequently used URLs with short, memorable commands. This is particularly useful for developers who regularly navigate to specific GitHub repositories, search package registries, or use various search engines.
+`to-where-cli` is a command-line utility designed to streamline your workflow by simplifying how you access websites, repositories, and search engines. It leverages a powerful alias system, allowing you to replace long, hard-to-remember URLs with short, intuitive commands directly from your terminal.
 
-Instead of remembering and typing `https://github.com/skypesky/to-where-cli`, you can simply create an alias and run `tw to-where`.
-
-```d2
-direction: down
-
-Terminal: {
-  shape: rectangle
-
-  User: {
-    shape: person
-  }
-
-  CLI-Input: {
-    label: "User types `tw home`"
-    shape: rectangle
-  }
-
-  User -> CLI-Input
-}
-
-to-where-cli: {
-  shape: package
-  
-  Alias-Lookup: {
-    label: "1. Looks up alias 'home'"
-    shape: rectangle
-  }
-  
-  URL-Retrieval: {
-    label: "2. Retrieves stored URL"
-    shape: rectangle
-  }
-  
-  Open-Command: {
-    label: "3. Issues system 'open' command"
-    shape: rectangle
-  }
-
-  Alias-Lookup -> URL-Retrieval -> Open-Command
-}
-
-Browser: {
-  shape: rectangle
-  label: "Default Web Browser"
-}
-
-Terminal -> to-where-cli: "Executes"
-to-where-cli -> Browser: "Launches URL"
-```
+Whether you're jumping to a project's pull requests, searching for a package on npm, or accessing a frequent URL, `to-where-cli` saves you time and effort.
 
 ## Key Features
 
 <x-cards data-columns="3">
-  <x-card data-title="Alias Management" data-icon="lucide:bookmark-plus">
-    Create, list, update, and remove short aliases for any URL. Open websites with a simple command instead of typing or pasting a full address.
+  <x-card data-title="Alias-Based Navigation" data-icon="lucide:link">
+    Create, manage, and use short aliases for any URL. Stop typing out complex web addresses and navigate with simple, memorable commands.
   </x-card>
-  <x-card data-title="Git Repository Shortcuts" data-icon="lucide:git-branch">
-    Navigate directly to specific pages of a Git repository, such as issues, pull requests, or the main project page, without needing the full URL.
+  <x-card data-title="Git Repository Shortcuts" data-icon="lucide:github">
+    Instantly open specific pages of a git repository, such as issues, pull requests, or the project homepage, directly from your local clone.
   </x-card>
-  <x-card data-title="Direct Web Search" data-icon="lucide:search">
-    Perform searches on popular sites like Google, Bing, Baidu, npm, and GitHub directly from your command line, opening the results page in your browser.
+  <x-card data-title="Integrated Search" data-icon="lucide:search">
+    Perform searches on popular platforms like Google, Bing, Baidu, npm, and GitHub without ever leaving your command line.
   </x-card>
 </x-cards>
 
 ## Supported Platforms
 
-The tool currently supports the following operating systems:
+`to-where-cli` currently supports the following operating systems:
 
 - macOS
 - Windows
 
----
+## Next Steps
 
-Ready to simplify your workflow? Head over to the [Getting Started](./getting-started.md) guide to install the CLI and create your first alias.
+Ready to get started? Head over to the installation guide to add `to-where-cli` to your system and learn the basic commands.
+
+➡️ **Next: [Getting Started](./getting-started.md)**

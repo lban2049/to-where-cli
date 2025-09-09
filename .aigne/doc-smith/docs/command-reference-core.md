@@ -1,10 +1,12 @@
 # Core Commands
 
-The core commands are the foundation of `to-where-cli`, providing essential tools for managing your directory aliases. These commands allow you to add, list, remove, and clear all aliases from your configuration.
+The core commands are the foundation of `to-where-cli`, providing all the necessary tools for managing your path aliases. They allow you to add, list, remove, and clear aliases efficiently. For a more guided tour of how these commands work together, you might want to start with the [Basic Usage](./getting-started-basic-usage.md) guide.
+
+This section provides a detailed reference for each core command.
 
 ## add
 
-The `add` command creates a new alias for a specified directory path. If no path is provided, it defaults to the current working directory. If no alias is given, it uses the name of the current directory.
+The `add` command creates a new alias for a specified directory path. If no path is provided, it defaults to the current working directory.
 
 ### Usage
 
@@ -14,51 +16,41 @@ tw add [alias] [address]
 
 ### Arguments & Options
 
-| Parameter | Description | Required |
-|---|---|---|
-| `alias` | A short, memorable name for the directory path. | No |
-| `address` | The full or relative path to the directory. | No |
-| `-f`, `--force` | Overwrites an existing alias if it already has the same name. | No |
+| Name      | Description                                                                                             | Required |
+|-----------|---------------------------------------------------------------------------------------------------------|----------|
+| `alias`   | A short, memorable name for the address. If omitted, the name of the current directory will be used.      | No       |
+| `address` | The directory path you want to create an alias for. If omitted, the current working directory is used.    | No       |
+| `-f, --force` | If the alias already exists, this option will overwrite it. Without this flag, the command will fail. | No       |
 
 ### Examples
 
-**1. Create an alias for the current directory**
+<x-cards>
+<x-card data-title="Alias the current directory" data-icon="lucide:at-sign">
+When run inside `/Users/dev/my-project`, this command creates an alias named `my-project` pointing to that directory.
+</x-card>
+<x-card data-title="Alias a specific directory" data-icon="lucide:folder-symlink">
+This creates an alias named `api` that points to the specified absolute path.
+</x-card>
+<x-card data-title="Overwrite an existing alias" data-icon="lucide:replace">
+If the `api` alias already exists, this command updates it to point to the new path.
+</x-card>
+</x-cards>
 
-If you are in `~/projects/my-cool-app`, this command creates an alias named `my-cool-app` pointing to it.
-
-```sh
+```sh title="Alias the current directory"
 tw add
 ```
 
-**2. Create an alias with a custom name for the current directory**
-
-This creates an alias named `cool-app` pointing to the current directory.
-
-```sh
-tw add cool-app
+```sh title="Alias a specific directory with a custom name"
+tw add api /Users/dev/work/project-api
 ```
 
-**3. Create an alias for a specific path**
-
-This command creates an alias `docs` that points to `~/documents/work`.
-
-```sh
-tw add docs ~/documents/work
+```sh title="Force overwrite an existing alias"
+tw add api /Users/dev/work/new-project-api --force
 ```
-
-**4. Overwrite an existing alias**
-
-If the alias `docs` already exists, this command updates its path to a new location.
-
-```sh
-tw add docs /new/path/to/docs --force
-```
-
----
 
 ## rm
 
-The `rm` command removes one or more aliases from your configuration.
+The `rm` command removes one or more aliases.
 
 ### Usage
 
@@ -66,48 +58,34 @@ The `rm` command removes one or more aliases from your configuration.
 tw rm [alias]
 ```
 
-### Behavior
-
-- **With an alias:** If you provide an alias, the command will remove that specific alias.
-- **Without an alias:** If you run the command without an alias, it enters an interactive mode, presenting a list of all your aliases. You can select multiple aliases to remove at once.
-
 ### Arguments
 
-| Parameter | Description | Required |
-|---|---|---|
-| `alias` | The name of the alias to be removed. | No |
+| Name    | Description                                                                                                 | Required |
+|---------|-------------------------------------------------------------------------------------------------------------|----------|
+| `alias` | The name of the alias to remove. If omitted, the command enters an interactive mode to select multiple aliases. | No       |
 
 ### Examples
 
-**1. Remove a specific alias**
+<x-cards>
+<x-card data-title="Remove a single alias" data-icon="lucide:trash-2">
+This will permanently delete the alias named `project-api`.
+</x-card>
+<x-card data-title="Remove aliases interactively" data-icon="lucide:list-checks">
+This launches a checklist where you can select multiple aliases to delete at once.
+</x-card>
+</x-cards>
 
-This command removes the alias named `docs`.
-
-```sh
-tw rm docs
+```sh title="Remove a specific alias"
+tw rm project-api
 ```
 
-**2. Remove aliases interactively**
-
-Running the command without arguments will display a prompt to choose which aliases to delete.
-
-```sh
+```sh title="Enter interactive removal mode"
 tw rm
 ```
 
-This will trigger a prompt similar to the following, where you can use arrow keys and the spacebar to make selections:
-
-```
-? Select the alias to be deleted233 (Press <space> to select, <a> to toggle all, <i> to invert selection)
-❯ ◯ docs => ~/documents/work => 5
-  ◯ cool-app => ~/projects/my-cool-app => 12
-```
-
----
-
 ## ls
 
-The `ls` command (aliased as `list`) displays your saved aliases, their corresponding paths, and their usage count.
+The `ls` command (aliased as `list`) displays your saved aliases and their corresponding paths. The list is sorted by the number of visits in descending order.
 
 ### Usage
 
@@ -115,47 +93,34 @@ The `ls` command (aliased as `list`) displays your saved aliases, their correspo
 tw ls [alias]
 ```
 
-### Behavior
-
-- **Without an alias:** Lists all saved aliases, sorted by the number of visits in descending order.
-- **With an alias:** Displays the details for only the specified alias.
-
 ### Arguments
 
-| Parameter | Description | Required |
-|---|---|---|
-| `alias` | The name of a specific alias to display. | No |
+| Name    | Description                                                      | Required |
+|---------|------------------------------------------------------------------|----------|
+| `alias` | If provided, displays the details for only that specific alias. | No       |
 
 ### Examples
 
-**1. List all aliases**
+<x-cards>
+<x-card data-title="List all aliases" data-icon="lucide:list">
+Displays a formatted list of all saved aliases, their paths, and visit counts.
+</x-card>
+<x-card data-title="Show a specific alias" data-icon="lucide:search">
+Looks for an alias named `api` and prints its details if found.
+</x-card>
+</x-cards>
 
-```sh
+```sh title="List all saved aliases"
 tw ls
-# or
-tw list
 ```
 
-The output will be formatted like this:
-
+```sh title="Display details for a single alias"
+tw ls api
 ```
-cool-app => ~/projects/my-cool-app => 12
-docs => ~/documents/work => 5
-```
-
-**2. Display a specific alias**
-
-This command shows the details for the `docs` alias only.
-
-```sh
-tw ls docs
-```
-
----
 
 ## clean
 
-The `clean` command completely removes all saved aliases from your configuration file. This action is irreversible.
+The `clean` command removes all existing aliases from your configuration.
 
 ### Usage
 
@@ -165,16 +130,25 @@ tw clean
 
 ### Options
 
-To prevent accidental data loss, this command requires a confirmation flag to execute.
+| Name          | Description                                                              | Required |
+|---------------|--------------------------------------------------------------------------|----------|
+| `-f, --force` | A safety measure to confirm the action. The command will not run without it. | Yes      |
 
-| Parameter | Description | Required |
-|---|---|---|
-| `-f`, `--force` | Confirms the action to delete all aliases. | Yes |
+### Examples
 
-### Example
+<x-cards>
+<x-card data-title="Attempt to clean without force" data-icon="lucide:shield-alert">
+This command will fail and show an error message, preventing accidental data loss.
+</x-card>
+<x-card data-title="Permanently delete all aliases" data-icon="lucide:shield-check">
+This will wipe all saved aliases from your configuration file.
+</x-card>
+</x-cards>
 
-To permanently delete all your aliases, run:
+```sh title="Attempt to run without the force flag (will fail)"
+tw clean
+```
 
-```sh
+```sh title="Forcefully remove all aliases"
 tw clean --force
 ```
