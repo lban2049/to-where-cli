@@ -1,32 +1,27 @@
 # 概述
 
-`to-where-cli` 是一款命令行实用工具，旨在通过简化您访问网站、代码仓库和搜索引擎的方式来优化您的工作流程。它利用强大的别名系统，允许您直接在终端中使用简短直观的命令来替代那些冗长且难以记忆的 URL。
+`to-where-cli` 是一个命令行工具，旨在通过别名机制简化你的工作流程，用于打开复杂或难以记忆的 URL。你可以创建简短易记的别名，从终端直接快速访问 GitHub 仓库、搜索 npm 包以及查询各种搜索引擎，而无需手动输入冗长的仓库链接或搜索查询。
 
-无论是跳转到项目的拉取请求页面、在 npm 上搜索软件包，还是访问常用 URL，`to-where-cli` 都能为您节省时间和精力。
+该工具非常适合频繁使用 GitHub、npm 和 Google 等服务的开发者，可以帮助他们节省时间并减少上下文切换。
 
-## 主要功能
+## 主要特性
 
-<x-cards data-columns="3">
-  <x-card data-title="基于别名的导航" data-icon="lucide:link">
-    为任何 URL 创建、管理和使用简短的别名。告别输入复杂的网址，使用简单易记的命令进行导航。
-  </x-card>
-  <x-card data-title="Git 仓库快捷方式" data-icon="lucide:github">
-    直接从本地克隆版本中即时打开 Git 仓库的特定页面，例如问题、拉取请求或项目主页。
-  </x-card>
-  <x-card data-title="集成搜索" data-icon="lucide:search">
-    无需离开命令行，即可在 Google、Bing、Baidu、npm 和 GitHub 等热门平台上执行搜索。
-  </x-card>
-</x-cards>
+- **基于别名的导航：** 为任何你认为难以记忆的网站或 URL 创建、管理和使用简单的别名。
+- **集成 Git 工作流：** 即时打开 Git 仓库的特定页面，例如 issues、pull requests 或项目主页。
+- **直接搜索命令：** 直接跳转到热门平台和搜索引擎的搜索结果页面，包括：
+  - npm
+  - GitHub
+  - Google
+  - Bing
+  - Baidu
 
 ## 支持的平台
 
-`to-where-cli` 目前支持以下操作系统：
+目前，`to-where-cli` 官方支持以下操作系统：
 
 - macOS
 - Windows
 
 ## 后续步骤
 
-准备好开始了吗？请前往安装指南，将 `to-where-cli` 添加到您的系统中，并学习基本命令。
-
-➡️ **下一步：[快速入门](./getting-started.md)**
+准备好简化你的命令行导航了吗？请前往 [入门指南](./getting-started.md) 来安装此命令行工具并创建你的第一个别名。

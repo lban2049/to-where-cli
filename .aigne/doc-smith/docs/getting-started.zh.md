@@ -1,22 +1,18 @@
 # 快速入门
 
-欢迎使用 `to-where-cli`！本指南将引导你快速上手。我们将逐步介绍安装过程，并涵盖管理 URL 别名的基本命令。阅读完本节后，你将能够轻松地创建、使用和管理快捷方式。
+欢迎使用 `to-where-cli`！这款命令行工具旨在简化您的工作流程，它允许您为冗长或复杂的 URL 创建和使用简短易记的别名。您无需费力记住 GitHub 仓库、NPM 包或搜索查询的晦涩地址，只需一个简单的别名，即可直接从终端打开它们。
 
-请按照以下步骤开始：
+本指南将引导您完成初始设置，并介绍开始有效管理别名所需的基本命令。
 
-<x-cards>
+<x-cards data-columns="2">
   <x-card data-title="安装" data-icon="lucide:download" data-href="/getting-started/installation">
-    了解如何使用 npm 在你的系统上全局安装 to-where-cli，从而使 `tw` 命令在终端中可用。
+    通过 npm 执行一行简单的命令，即可在您的系统上全局安装 to-where-cli。
   </x-card>
   <x-card data-title="基本用法" data-icon="lucide:terminal-square" data-href="/getting-started/basic-usage">
-    深入了解核心功能。本节将介绍添加、打开、列出和删除别名的基本命令。
+    学习添加、使用、列出和删除您的第一个 URL 别名的核心工作流程。
   </x-card>
 </x-cards>
 
-## 后续步骤
+### 后续步骤
 
-安装 CLI 并掌握基本命令后，你就可以开始探索更高级的功能。如需深入了解所有可用命令及其选项，请参阅我们详尽的命令参考。
-
-<x-card data-title="命令参考" data-icon="lucide:book-open" data-href="/command-reference">
-  查阅 to-where-cli 中所有可用命令、子命令和选项的详细参考。
-</x-card>
+掌握了安装和别名管理的基础知识后，您可以探索该命令行工具提供的全部功能。要获取每个命令及其可用选项的详细说明，请参阅 [命令参考](./command-reference.md)。

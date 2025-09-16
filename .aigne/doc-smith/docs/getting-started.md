@@ -1,22 +1,18 @@
 # Getting Started
 
-Welcome to `to-where-cli`! This guide provides a straightforward path to get you up and running. We'll walk through the installation process and cover the basic commands for managing your URL aliases. By the end of this section, you'll be able to create, use, and manage your shortcuts with ease.
+Welcome to `to-where-cli`! This command-line tool is designed to simplify your workflow by allowing you to create and use short, memorable aliases for long or complex URLs. Instead of trying to remember obscure addresses for GitHub repositories, NPM packages, or search queries, you can use a simple alias to open them directly from your terminal.
 
-Follow these steps to begin:
+This guide will walk you through the initial setup and the fundamental commands you need to begin managing your aliases effectively.
 
-<x-cards>
+<x-cards data-columns="2">
   <x-card data-title="Installation" data-icon="lucide:download" data-href="/getting-started/installation">
-    Learn how to install the to-where-cli globally on your system using npm, making the `tw` command available in your terminal.
+    Follow a simple one-line command to install the to-where-cli globally on your system via npm.
   </x-card>
   <x-card data-title="Basic Usage" data-icon="lucide:terminal-square" data-href="/getting-started/basic-usage">
-    Dive into the core functionality. This section covers the essential commands for adding, opening, listing, and removing aliases.
+    Learn the core workflow for adding, using, listing, and removing your first URL alias.
   </x-card>
 </x-cards>
 
-## Next Steps
+### Next Steps
 
-After you've installed the CLI and mastered the basic commands, you'll be ready to explore more advanced features. For a deep dive into all available commands and their options, please proceed to our comprehensive command reference.
-
-<x-card data-title="Command Reference" data-icon="lucide:book-open" data-href="/command-reference">
-  Explore a detailed reference for all commands, subcommands, and options available in to-where-cli.
-</x-card>
+Once you have mastered the basics of installation and alias management, you can explore the full range of capabilities the CLI offers. For a detailed breakdown of every command and its available options, please proceed to the [Command Reference](./command-reference.md).

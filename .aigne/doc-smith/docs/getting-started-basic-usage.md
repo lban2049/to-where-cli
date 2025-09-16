@@ -1,77 +1,65 @@
 # Basic Usage
 
-Once you have `to-where-cli` installed, you can start managing your address aliases with a few simple commands. This guide will walk you through the core workflow: adding, opening, listing, updating, and removing aliases.
+Once `to-where-cli` is installed, you can immediately start managing your shortcuts. This guide walks you through the core workflow of adding, using, listing, and removing an alias with practical examples.
 
-### Add an Alias
+## Add an Alias
 
-To save a new address, use the `tw add` command. You need to provide a short, memorable `alias` and the full `address` you want to save.
+To create a new shortcut, use the `tw add` command. Provide a short, memorable alias followed by the full address you want to link it to.
 
-```shell
+```shell Add an alias icon=lucide:plus-circle
 tw add home https://github.com/skypesky
 ```
 
-**Pro Tip:** If you run `tw add` without an address, it will use your current working directory. If you also omit the alias, it will use the directory's name as the alias.
+## Open an Alias
 
-```shell
-# In folder /Users/dev/my-project
-tw add my-proj # Creates an alias 'my-proj' for the current directory
+To open the saved address in your default browser, simply run `tw` followed by the alias name. This is the primary function of the tool—turning a long URL into a quick command.
 
-# In folder /Users/dev/my-project
-tw add # Creates an alias 'my-project' for the current directory
-```
-
-### Open an Address by Alias
-
-To open a saved address in your default browser, simply type `tw` followed by the alias.
-
-```shell
+```shell Open with alias icon=lucide:send
 tw home
 ```
 
-This command will open `https://github.com/skypesky`.
+## Update an Alias
 
-### List Your Aliases
+If you need to change the address associated with an existing alias, use the `tw add` command again with the same alias and the new address. The CLI will automatically overwrite the previous entry. You can also use the `--force` flag to make this explicit.
 
-If you forget an alias, you can list all saved aliases and their corresponding addresses using the `tw ls` command (or its full-length version, `tw list`).
-
-```shell
-# List all saved aliases
-tw ls
+```shell Update an alias icon=lucide:edit
+tw add home https://github.com/skypesky/leetcode-for-javascript
 ```
 
-You can also check the address for a specific alias.
+## List Aliases
 
-```shell
-# Show the address for the 'home' alias
-tw ls home
-```
+To see what aliases you have saved, use the `tw ls` command (or its full alias, `list`). You can either view all saved aliases or check the details for a specific one.
 
-### Update an Alias
+- **List all aliases:**
 
-To update the address associated with an existing alias, simply use the `tw add` command again with the same alias and the new address. This will overwrite the previous entry.
+  ```shell List all aliases icon=lucide:list
+  tw ls
+  ```
 
-```shell
-tw add home https://github.com/skypesky/to-where-cli
-```
+- **List a specific alias:**
 
-If you want to be explicit about overwriting, you can use the `--force` or `-f` flag.
+  ```shell List a specific alias icon=lucide:search
+  tw ls home
+  ```
 
-### Remove an Alias
+## Remove an Alias
 
-To delete an alias you no longer need, use the `tw rm` command followed by the alias name.
+When you no longer need a shortcut, you can remove it with the `tw rm` command.
 
-```shell
-tw rm home
-```
+- **Remove by name:**
 
-If you run `tw rm` without specifying an alias, the tool will enter an interactive mode, allowing you to select multiple aliases to delete from a list of all your saved entries.
+  Provide the alias name to delete it directly.
 
-### Get Help
+  ```shell Remove a specific alias icon=lucide:trash-2
+  tw rm home
+  ```
 
-For a complete list of commands and options, you can always use the help flag.
+- **Remove interactively:**
 
-```shell
-tw -h
-```
+  If you run `tw rm` without any arguments, it will launch an interactive prompt where you can select one or more aliases to delete from a list.
 
-Now that you've mastered the basics, you can explore all the available commands and their options in the [Command Reference](./command-reference.md).
+  ```shell Remove aliases interactively icon=lucide:mouse-pointer-click
+  tw rm
+  ```
+
+This covers the fundamental workflow for managing your shortcuts. For a more exhaustive list of commands and their available options, proceed to the [Command Reference](./command-reference.md) section.

@@ -1,10 +1,20 @@
 # Installation
 
-Before you can start creating convenient aliases, you need to install `to-where-cli`. The tool is distributed as a global npm package, making the `tw` command accessible from anywhere in your terminal.
+`to-where-cli` is a command-line utility distributed via npm (Node Package Manager). This guide will walk you through the installation process.
 
 ## Prerequisites
 
-Ensure you have Node.js and npm (Node Package Manager) installed on your system. You can download them from the [official Node.js website](https://nodejs.org/).
+Before you begin, ensure you have Node.js and npm installed on your system. Npm is included with the Node.js installation.
+
+## Global Installation
+
+To make the `tw` command available from anywhere in your terminal, you should install the package globally. Open your terminal or command prompt and run the following command:
+
+```shell Installation Command icon=mdi:npm
+npm install -g to-where-cli
+```
+
+The `-g` flag ensures that the package is installed globally, allowing you to run the `tw` command from any directory on your system.
 
 ### Supported Platforms
 
@@ -13,26 +23,20 @@ Please note that `to-where-cli` currently supports the following operating syste
 - macOS
 - Windows
 
-## Global Installation
+## Verify Installation
 
-To install the CLI, open your terminal or command prompt and execute the following command:
+After the installation is complete, you can verify that it was successful by running the help command:
 
-```shell
-npm install -g to-where-cli
-```
-
-The `-g` flag installs the package globally on your system, which is necessary for the `tw` command to be available system-wide.
-
-## Verify the Installation
-
-Once the installation is complete, you can verify that it was successful by running the help command:
-
-```shell
+```shell Verify Installation
 tw -h
 ```
 
-If the installation was successful, you should see a list of available commands and options.
+If the installation was successful, this command will display the help menu, listing all available commands and options.
 
 ---
 
-Now that `to-where-cli` is installed, you're ready to simplify your workflow. Proceed to the [Basic Usage](./getting-started-basic-usage.md) guide to learn how to create and manage your first alias.
+Now that you have `to-where-cli` installed, you are ready to learn its core functionalities. Proceed to the next section to get started with the basic commands.
+
+<x-card data-title="Basic Usage" data-href="/getting-started/basic-usage" data-icon="lucide:arrow-right">
+A quick tutorial demonstrating the core workflow: adding, using, listing, and removing an alias.
+</x-card>
